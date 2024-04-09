@@ -50,7 +50,7 @@
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 /* USER CODE BEGIN PFP */
-
+int32_t TestFunction(int32_t num);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -62,34 +62,40 @@ static void MX_GPIO_Init(void);
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
-{
-  /* USER CODE BEGIN 1 */
+int main(void){
+	/* USER CODE BEGIN 1 */
 
-  /* USER CODE END 1 */
+	/* USER CODE END 1 */
 
-  /* MCU Configuration--------------------------------------------------------*/
+	/* MCU Configuration--------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+	HAL_Init();
 
-  /* USER CODE BEGIN Init */
+	/* USER CODE BEGIN Init */
 
-  /* USER CODE END Init */
+	/* USER CODE END Init */
 
-  /* Configure the system clock */
-  SystemClock_Config();
+	/* Configure the system clock */
+	SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
+	/* USER CODE BEGIN SysInit */
 
-  /* USER CODE END SysInit */
+	/* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
-  //MX_GPIO_Init();
-  /* USER CODE BEGIN 2 */
+	/* Initialize all configured peripherals */
+	//MX_GPIO_Init();
+	/* USER CODE BEGIN 2 */
 
-  uint8_t count = 0;
-  	// configure GPIO pins PC0, PC1, PC2, PC3 for:
+	// Count to 15
+	uint8_t count = 0;
+
+	// Count to 3
+	uint8_t countOfCount = 0;
+
+	int32_t main_var;
+
+	// configure GPIO pins PC0, PC1, PC2, PC3 for:
 	// output mode, push-pull, no pull up or pull down, high speed
 	RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIOCEN);
 	GPIOC->MODER   &= ~(GPIO_MODER_MODE0 | GPIO_MODER_MODE1 | GPIO_MODER_MODE2 | GPIO_MODER_MODE3 );
@@ -103,56 +109,42 @@ int main(void)
 	 // preset PC0, PC1, PC2, PC3 to 0
 	GPIOC->BRR = (GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 );
 
+	/* USER CODE END 2 */
 
-	//Variables to hold the state of each bit
-	uint16_t bit_one;
-	uint16_t bit_two ;
-	uint16_t bit_three;
-	uint16_t bit_four;
+	/* Infinite loop */
+	/* USER CODE BEGIN WHILE */
+	while (1){
 
-  /* USER CODE END 2 */
+		//Write the state of each bit to the corresponding GPIO
+		GPIOC->ODR = (count);
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+		// arbitrary delay
+		for (int i = 0; i < 50000; i++);
 
-	  //Get state of each bit, multiply it by the pin value and record it
-	  bit_one =    (count & 0x01) * GPIO_PIN_0;
-	  bit_two =   ((count & 0b0010) >> 1) * GPIO_PIN_1;
-	  bit_three = ((count & 0b00000100) >> 2) * GPIO_PIN_2;
-	  bit_four =  ((count & 0b00001000) >> 3) * GPIO_PIN_3;
+		if (countOfCount < 3){
+			//If count is equal to 15
+			if (count == 15){
+			  // Set count to 0
+			  count = 0;
+			  // Increment count of the counter
+			  countOfCount++;
+			}
+			//Otherwise
+			else{
+			//Increment count
+			  count++;
+			}
+		}
+		else{
+			// time the test function call using PC0
+			  GPIOC->BSRR = (GPIO_PIN_0);             // turn on PC0
+			  main_var = TestFunction(15);            // call test function
+			  GPIOC->BRR = (GPIO_PIN_0);              // turn off PC0
+		}
+		/* USER CODE END WHILE */
 
-	  //<debug>
-	  printf("count = %d, ", count);
-	  printf("%d  %d  %d  %d\n", bit_one, bit_two, bit_three, bit_four);
-	  //</debug>
-
-	  //Write the state of each bit to the corresponding GPIO
-	  GPIOC->ODR = (bit_one | bit_two | bit_three | bit_four);
-
-	  // arbitrary delay
-	  for (int i = 0; i < 100000; i++);
-
-
-	  //If count is equal to 15
-	  if (count == 15)
-	  {
-		  //Set count to 0
-		  count = 0;
-	  }
-	  //Otherwise
-	  else
-	  {
-	  //Increment count
-		  count++;
-	  }
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-
-	  //HAL_Delay(500);
-  }
+		/* USER CODE BEGIN 3 */
+	}
   /* USER CODE END 3 */
 }
 
@@ -293,6 +285,20 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+int32_t TestFunction(int32_t num) {
+
+	int32_t test_var;  				// local variable
+
+	GPIOC->BSRR = (GPIO_PIN_1);             // turn on PC1
+	/* USER insert test function here e.g. test_var = num; */
+	test_var = num + 1;
+
+	GPIOC->BRR = (GPIO_PIN_1);              // turn off PC1
+
+	return test_var;
+}
+
 
 int __io_putchar(int ch) {
     ITM_SendChar(ch);
