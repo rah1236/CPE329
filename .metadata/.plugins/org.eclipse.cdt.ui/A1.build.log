@@ -1,0 +1,26 @@
+18:13:08 **** Incremental Build of configuration Debug for project A1 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:92:17: warning: variable 'main_var' set but not used [-Wunused-but-set-variable]
+   92 |         double  main_var;
+      |                 ^~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:196:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  196 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+arm-none-eabi-gcc -o "A1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A1\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.15.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: warning: A1.elf has a LOAD segment with RWX permissions
+Finished building target: A1.elf
+ 
+arm-none-eabi-size  A1.elf 
+arm-none-eabi-objdump -h -S A1.elf  > "A1.list"
+   text	   data	    bss	    dec	    hex	filename
+   5356	     20	   1572	   6948	   1b24	A1.elf
+Finished building: default.size.stdout
+ 
+Finished building: A1.list
+ 
+
+18:13:09 Build Finished. 0 errors, 3 warnings. (took 590ms)
+
