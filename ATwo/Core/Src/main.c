@@ -61,10 +61,9 @@ void SystemClock_Config(void);
   * @brief  The application entry point.
   * @retval int
   */
-int main(void)
-{
+int main(void){
 
-  /* USER CODE BEGIN 1 */
+	/* USER CODE BEGIN 1 */
 	// configure GPIO pins PD3, PD4, PD5, PD6 for:
 	// output mode, push-pull, no pull up or pull down, high speed
 	RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIODEN);
@@ -73,86 +72,44 @@ int main(void)
 	GPIOD->OTYPER  &= ~(GPIO_OTYPER_OT3 | GPIO_OTYPER_OT4 | GPIO_OTYPER_OT5 | GPIO_OTYPER_OT6);
 	GPIOD->PUPDR   &= ~(GPIO_PUPDR_PUPD3 | GPIO_PUPDR_PUPD4 | GPIO_PUPDR_PUPD5 | GPIO_PUPDR_PUPD6);
 	GPIOD->OSPEEDR |=  ((3 << GPIO_OSPEEDR_OSPEED3_Pos) |
-					  	(3 << GPIO_OSPEEDR_OSPEED4_Pos) |
-					    (3 << GPIO_OSPEEDR_OSPEED5_Pos) |
-					    (3 << GPIO_OSPEEDR_OSPEED6_Pos));
+						(3 << GPIO_OSPEEDR_OSPEED4_Pos) |
+						 (3 << GPIO_OSPEEDR_OSPEED5_Pos) |
+						 (3 << GPIO_OSPEEDR_OSPEED6_Pos));
 
 	 // preset  PD3, PD4, PD5, PD6 to 0
 	GPIOD->BSRR |= (GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 );
 
+	/* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+	HAL_Init();
+	SystemClock_Config();
+	//Enable keypad
+	Keypad_Init();
 
+	uint32_t last_keypad_value;
 
-	uint32_t lastKeypadValue;
-  /* USER CODE END 1 */
+	while (1){
+		//Get the last captured keypad value
+		last_keypad_value = Keypad_Read();
 
-  /* MCU Configuration--------------------------------------------------------*/
-
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
-  SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-
-  //Enable keypad
-  Keypad_Init();
-
-  /* USER CODE END SysInit */
-
-  /* USER CODE BEGIN 2 */
-
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
-	  printf("%c \n",Keypad_Read());	  // arbitrary delay
-
-	  lastKeypadValue = Keypad_Read();
-
-	  if (lastKeypadValue != '\0'){
-		  switch (lastKeypadValue){
+		//If the keypad is pressed
+		if (last_keypad_value != '\0'){
+			switch (last_keypad_value){
+				//For the #, set outside LEDs to 0xD
 			  case '#':
-				  GPIOD->ODR =  0b01001000;
+				  GPIOD->ODR =  11 << 3;
 				  break;
+			  //For the *, set the inside LEDs 0xE
 			  case '*':
-				  GPIOD->ODR = 0b00110000;
+				  GPIOD->ODR = 10 << 3;
 				  break;
-
+			  //Otherwise, set the leds to the last pressed value
 			  default:
-				  GPIOD->ODR = lastKeypadValue << 3;
-
-		 		  break;
-
-		 	}
-		  }
-
-
-//		  if (lastKeypadValue == '*'){
-////			  GPIOD->ODR &= 0b10000111;
-////			  GPIOD->ODR |= 0b01111000;
-//		  }
-//		  else if(lastKeypadValue == '#'){
-////			  GPIOD->ODR &= 0b10000111;
-////			  GPIOD->ODR |= 0b00110000;
-//		  }
-////		  else{
-////			  GPIOD->ODR &= 0b10000111;
-////			  GPIOD->ODR = (lastKeypadValue |= 0x0F) << 3;
-//
-//		  }
-
-	  }
-	  /* USER CODE BEGIN 3 */
-
-  /* USER CODE END 3 */
+				  //Bit shift by 3 to the left because we are toggling pins PD4, PD5, PD6, PD7
+				  GPIOD->ODR = last_keypad_value << 3;
+				  break;
+			}
+		}
+	}
 }
 
 /**
@@ -198,16 +155,6 @@ void SystemClock_Config(void)
     Error_Handler();
   }
 }
-
-
-/* USER CODE BEGIN 4 */
-
-int __io_putchar(int ch) {
-    ITM_SendChar(ch);
-    return ch;
-}
-
-/* USER CODE END 4 */
 
 /**
   * @brief  This function is executed in case of error occurrence.

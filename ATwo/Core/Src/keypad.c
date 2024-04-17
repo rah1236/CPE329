@@ -53,7 +53,7 @@ void Keypad_Config(void);
 
 uint8_t Keypad_Read(void);
 
-uint8_t Keypad_CheckKeyPressed(uint8_t columnRowByte);
+uint8_t Keypad_CheckKeyPressed(uint8_t column_row_byte);
 
 
 
@@ -86,17 +86,18 @@ void Keypad_Init(void){
 
 /*
  * The function Keypad_CheckKeyPressed, accepts an single byte
- * with the following structure: 0b 0 0   0 0 0   0 0 0
- *                                       |_____| |_____|
- *                                        Row     Column
+ * with the following encoding: 0 b 0 0   0 0 0   0 0 0
+ *                                  |_|  |_____| |_____|
+ *                                  N/A   Row     Column
  *  BEWARNED: Row data is a standard integer, it counts up to 4,
- *  Column data is BITWISE!!!, bit 1 represents column 1, bit 2 column 2, etc
+ *  Column data is BITWISE!!!, bit 0 represents column 1, bit 1 column 2, etc
+ *  This function returns chars relating to which key is pressed
  */
-uint8_t Keypad_CheckKeyPressed(uint8_t columnRowByte){
+uint8_t Keypad_CheckKeyPressed(uint8_t column_row_byte){
 
 	uint8_t var;
 
-	switch (columnRowByte) {
+	switch (column_row_byte) {
 	  case 0x01: //Column 1, Row 1
 		  var = ('1');
 		  break;
@@ -147,7 +148,6 @@ uint8_t Keypad_CheckKeyPressed(uint8_t columnRowByte){
 	  default:
 		  var = ('.'); //period for no press
 		  break;
-
 	}
 
 	return var;
@@ -156,53 +156,56 @@ uint8_t Keypad_CheckKeyPressed(uint8_t columnRowByte){
 
 
 
-
+/* The function Keypad_Read polls through the keypad row pins a total of
+ *  DEBOUNCE_ELEMENTS * 3 times, and returns the most recently
+ *  consistently pressed key.
+ *
+ */
 uint8_t Keypad_Read(void){
 
-	uint8_t columnRowByte;
 
-	//uint8_t debounceArray[DEBOUNCE_ELEMENTS];
+	uint8_t encoded_key_pressed;
 
-	int32_t keyChanges;
-	uint8_t lastKeyPressed;
-	uint8_t currentKeyPressed;
+	int32_t number_of_key_changes;
+	uint8_t last_key_pressed;
+	uint8_t current_key_pressed;
 
 
-	for(int debounceRound = 0; debounceRound < DEBOUNCE_ELEMENTS; debounceRound++){
+	//Run the polling code DEBOUNCE_ELEMENTS number of times
+	for(int debounce_round = 0; debounce_round < DEBOUNCE_ELEMENTS; debounce_round++){
 		// Poll through 4 rows
-		for(int polledRow = 0; polledRow < ROWS; polledRow++){
+		for(int polled_row = 0; polled_row < ROWS; polled_row++){
 
 			//Enable current polled row
-			GPIOC->ODR = (1 << polledRow);
+			GPIOC->ODR = (1 << polled_row);
 
-			// arbitrary delay to allow pin output to settle
-			//for (int i = 0; i < 10; i++);
+			//Get currently pressed key in encoded form
+			encoded_key_pressed = (polled_row<<3) | ((GPIOC->IDR >> 4));
 
-
-			//printf("Pin currently high = %d \n", (GPIOC->IDR >> 4));
-
-			columnRowByte = (polledRow<<3) | ((GPIOC->IDR >> 4));
-
-			if (Keypad_CheckKeyPressed(columnRowByte) != '.'){
-				currentKeyPressed = Keypad_CheckKeyPressed(columnRowByte);
+			// if the a key was pressed
+			if (Keypad_CheckKeyPressed(encoded_key_pressed) != '.'){
+				// record WHICH key was pressed
+				current_key_pressed = Keypad_CheckKeyPressed(encoded_key_pressed);
 			}
 
-			if (lastKeyPressed != currentKeyPressed){
-				keyChanges++;
+			//if the last key pressed isn't the same as the current key pressed
+			if (last_key_pressed != current_key_pressed){
+				//Record the change
+				number_of_key_changes++;
 			}
+			//if the last key pressed is the same as the current key pressed,
 			else {
-				keyChanges = 0;
+				//Reset the change counter
+				number_of_key_changes = 0;
 			}
 
-			lastKeyPressed = currentKeyPressed;
-			//printf("%c \n",Keypad_CheckKeyPressed(columnRowByte));
-//			printf("%c \n", lastKeyPressed);
-
+			//Set the current key pressed to be the last key pressed before polling again
+			last_key_pressed = current_key_pressed;
 		}
 	}
-
-		return((keyChanges == 0) ? lastKeyPressed : '\0');
-		//return (Keypad_FindMostFrequentElement(debounceArray, DEBOUNCE_ELEMENTS));
+		//If the last key pressed hasn't changed in DEBOUNCE_ELEMENTS number of polling cycles
+		//return the last key pressed, otherwise, return the null character
+		return((number_of_key_changes == 0) ? last_key_pressed : '\0');
 
 
 }
