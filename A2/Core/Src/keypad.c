@@ -44,14 +44,16 @@
 
 #define ROWS 4
 #define COLUMNS 3
-
+#define DEBOUNCE_ELEMENTS 5
 
 /* function prototypes */
 void Keypad_Init(void);
 
 void Keypad_Config(void);
 
-void Keypad_Read(void);
+uint8_t Keypad_Read(void);
+
+uint8_t Keypad_CheckKeyPressed(uint8_t columnRowByte);
 
 
 
@@ -80,20 +82,129 @@ void Keypad_Init(void){
 }
 
 
-void Keypad_Read(void){
-	// Poll through 3 pins
-	for(int poll = 0; poll < 4; poll++)
-	{
-		//Enable current polled row
-		GPIOC->ODR = (1 << poll);
-
-		// arbitrary delay to allow pin output to settle
-		for (int i = 0; i < 100; i++);
 
 
-		printf("Currently polling %d, ", poll);
-		printf("Pin currently high = %d \n", (GPIOC->IDR >> 4));
+/*
+ * The function Keypad_CheckKeyPressed, accepts an single byte
+ * with the following structure: 0b 0 0   0 0 0   0 0 0
+ *                                       |_____| |_____|
+ *                                        Row     Column
+ *  BEWARNED: Row data is a standard integer, it counts up to 4,
+ *  Column data is BITWISE!!!, bit 1 represents column 1, bit 2 column 2, etc
+ */
+uint8_t Keypad_CheckKeyPressed(uint8_t columnRowByte){
 
+	uint8_t var;
+
+	switch (columnRowByte) {
+	  case 0x01: //Column 1, Row 1
+		  var = ('1');
+		  break;
+	  case 0x02: //Column 2, Row 1
+		  var = ('2');
+		  break;
+
+	  case 0x04: //Column 3, Row 1
+		  var = ('3');
+		  break;
+
+	  case 0x09: //Column 1, Row 2
+		  var = ('4');
+		  break;
+
+	  case 0x0a: //Column 2, Row 2
+		  var = ('5');
+		  break;
+
+	  case 0x0c: //Column 3, Row 2
+		  var = ('6');
+		  break;
+
+	  case 0x11: //Column 1, Row 3
+		  var = ('7');
+		  break;
+
+	  case 0x12: //Column 2, Row 3
+		  var = ('8');
+		  break;
+
+	  case 0x14: //Column 2, Row 3
+		  var = ('9');
+		  break;
+
+	  case 0x19: //Column 1, Row 4
+		  var = ('*');
+		  break;
+
+	  case 0x1a: //Column 2, Row 4
+		  var = ('0');
+		  break;
+
+	  case 0x1c: //Column 3, Row 4
+		  var = ('#');
+		  break;
+
+	  default:
+		  var = ('.'); //period for no press
+		  break;
+
+	}
+
+	return var;
+}
+
+
+int Keypad_FindMostFrequentElement(int arr[], int size) {
+    int freq[DEBOUNCE_ELEMENTS] = {0}; // Array to store frequencies
+    int maxFreq = 0;   // Variable to store maximum frequency
+    int maxElement;    // Variable to store the most frequent element
+
+    // Count the frequency of each element
+    for (int i = 0; i < size; i++) {
+        freq[arr[i]]++;
+    }
+
+    // Find the element with maximum frequency
+    for (int i = 0; i < 5; i++) {
+        if (freq[i] > maxFreq) {
+            maxFreq = freq[i];
+            maxElement = i;
+        }
+    }
+
+    return maxElement;
+}
+
+
+uint8_t Keypad_Read(void){
+
+	uint8_t columnRowByte;
+
+	uint8_t debounceArray[DEBOUNCE_ELEMENTS];
+
+	for(int debouncePoll = 0; debouncePoll < DEBOUNCE_ELEMENTS; debouncePoll++){
+
+		// Poll through 3 pins
+		for(int polledRow = 0; polledRow < 4; polledRow++){
+
+			//Enable current polled row
+			GPIOC->ODR = (1 << polledRow);
+
+			// arbitrary delay to allow pin output to settle
+			for (int i = 0; i < 100; i++);
+
+
+			//printf("Currently polling %d, ", polledRow);
+			//printf("Pin currently high = %d \n", (GPIOC->IDR >> 4));
+
+			columnRowByte = (polledRow<<3) | ((GPIOC->IDR >> 4));
+
+			debounceArray[debouncePoll] = Keypad_CheckKeyPressed(columnRowByte);
+
+			printf("%c \n",Keypad_CheckKeyPressed(columnRowByte));
+		}
+
+		//return (Keypad_FindMostFrequentElement(debounceArray, DEBOUNCE_ELEMENTS));
 
 	}
 }
