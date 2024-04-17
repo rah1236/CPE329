@@ -118,23 +118,40 @@ int main(void)
 	  lastKeypadValue = Keypad_Read();
 
 	  if (lastKeypadValue != '\0'){
-		  if (lastKeypadValue == '*'){
-			  GPIOD->ODR = 0b01111000;
-		  }
-		  else if(lastKeypadValue == '#'){
-			  GPIOD->ODR = 0b00110000;
-		  }
-		  else{
-			  GPIOD->ODR = (lastKeypadValue |= 0x0F) << 3;
+		  switch (lastKeypadValue){
+			  case '#':
+				  GPIOD->ODR =  0b01001000;
+				  break;
+			  case '*':
+				  GPIOD->ODR = 0b00110000;
+				  break;
 
+			  default:
+				  GPIOD->ODR = lastKeypadValue << 3;
+
+		 		  break;
+
+		 	}
 		  }
 
-	  }
-	  else{
-		  GPIOD->ODR = 0b00000000;
+
+//		  if (lastKeypadValue == '*'){
+////			  GPIOD->ODR &= 0b10000111;
+////			  GPIOD->ODR |= 0b01111000;
+//		  }
+//		  else if(lastKeypadValue == '#'){
+////			  GPIOD->ODR &= 0b10000111;
+////			  GPIOD->ODR |= 0b00110000;
+//		  }
+////		  else{
+////			  GPIOD->ODR &= 0b10000111;
+////			  GPIOD->ODR = (lastKeypadValue |= 0x0F) << 3;
+//
+//		  }
+
 	  }
 	  /* USER CODE BEGIN 3 */
-  }
+
   /* USER CODE END 3 */
 }
 

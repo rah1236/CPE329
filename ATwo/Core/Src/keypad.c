@@ -154,26 +154,7 @@ uint8_t Keypad_CheckKeyPressed(uint8_t columnRowByte){
 }
 
 
-int Keypad_FindMostFrequentElement(int arr[], int size) {
-    int freq[DEBOUNCE_ELEMENTS] = {0}; // Array to store frequencies
-    int maxFreq = 0;   // Variable to store maximum frequency
-    int maxElement;    // Variable to store the most frequent element
 
-    // Count the frequency of each element
-    for (int i = 0; i < size; i++) {
-        freq[arr[i]]++;
-    }
-
-    // Find the element with maximum frequency
-    for (int i = 0; i < 5; i++) {
-        if (freq[i] > maxFreq) {
-            maxFreq = freq[i];
-            maxElement = i;
-        }
-    }
-
-    return maxElement;
-}
 
 
 uint8_t Keypad_Read(void){
@@ -189,7 +170,7 @@ uint8_t Keypad_Read(void){
 
 	for(int debounceRound = 0; debounceRound < DEBOUNCE_ELEMENTS; debounceRound++){
 		// Poll through 4 rows
-		for(int polledRow = 0; polledRow < 4; polledRow++){
+		for(int polledRow = 0; polledRow < ROWS; polledRow++){
 
 			//Enable current polled row
 			GPIOC->ODR = (1 << polledRow);
