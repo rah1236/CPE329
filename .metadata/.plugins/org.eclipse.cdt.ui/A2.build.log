@@ -1,0 +1,18 @@
+23:47:57 **** Incremental Build of configuration Debug for project A2 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/system_stm32l4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32l4xx.d" -MT"Core/Src/system_stm32l4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32l4xx.o"
+In file included from ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l4a6xx.h:175,
+                 from ../Drivers/CMSIS/Device/ST/STM32L4xx/Include/stm32l4xx.h:157,
+                 from ../Core/Src/system_stm32l4xx.c:91:
+../Core/Src/system_stm32l4xx.c: In function 'SystemInit':
+../Drivers/CMSIS/Include/core_cm4.h:1555:29: error: missing binary operator before token "("
+ 1555 | #define SCB                 ((SCB_Type       *)     SCB_BASE      )   /*!< SCB configuration struct */
+      |                             ^
+../Core/Src/system_stm32l4xx.c:205:48: note: in expansion of macro 'SCB'
+  205 | #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)  SCB->CPACR |= ((3UL << 20U)|(3UL << 22U));  /* set CP10 and CP11 Full Access */
+      |                                                ^~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/system_stm32l4xx.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+
+23:47:58 Build Failed. 2 errors, 0 warnings. (took 240ms)
+

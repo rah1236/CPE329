@@ -65,9 +65,24 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+	// configure GPIO pins PD3, PD4, PD5, PD6 for:
+	// output mode, push-pull, no pull up or pull down, high speed
+	RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIODEN);
+	GPIOD->MODER   &= ~(GPIO_MODER_MODE3 | GPIO_MODER_MODE4 | GPIO_MODER_MODE5 | GPIO_MODER_MODE6 );
+	GPIOD->MODER   |=  (GPIO_MODER_MODE3_0 | GPIO_MODER_MODE4_0 | GPIO_MODER_MODE5_0 | GPIO_MODER_MODE6_0);
+	GPIOD->OTYPER  &= ~(GPIO_OTYPER_OT3 | GPIO_OTYPER_OT4 | GPIO_OTYPER_OT5 | GPIO_OTYPER_OT6);
+	GPIOD->PUPDR   &= ~(GPIO_PUPDR_PUPD3 | GPIO_PUPDR_PUPD4 | GPIO_PUPDR_PUPD5 | GPIO_PUPDR_PUPD6);
+	GPIOD->OSPEEDR |=  ((3 << GPIO_OSPEEDR_OSPEED3_Pos) |
+					  	(3 << GPIO_OSPEEDR_OSPEED4_Pos) |
+					    (3 << GPIO_OSPEEDR_OSPEED5_Pos) |
+					    (3 << GPIO_OSPEEDR_OSPEED6_Pos));
+
+	 // preset  PD3, PD4, PD5, PD6 to 0
+	GPIOD->BSRR |= (GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 );
 
 
 
+	uint32_t lastKeypadValue;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -83,32 +98,12 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-	// configure GPIO pins PC0, PC1, PC2, PC3 for:
-	// output mode, push-pull, no pull up or pull down, high speed
-//	RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIOCEN);
-//	GPIOC->MODER   &= ~(GPIO_MODER_MODE0 | GPIO_MODER_MODE1 | GPIO_MODER_MODE2 | GPIO_MODER_MODE3 );
-//	GPIOC->MODER   |=  (GPIO_MODER_MODE0_0 | GPIO_MODER_MODE1_0 | GPIO_MODER_MODE2_0 | GPIO_MODER_MODE3_0);
-//	GPIOC->OTYPER  &= ~(GPIO_OTYPER_OT0 | GPIO_OTYPER_OT1 | GPIO_OTYPER_OT2 | GPIO_OTYPER_OT3);
-//	GPIOC->PUPDR   &= ~(GPIO_PUPDR_PUPD0 | GPIO_PUPDR_PUPD1 | GPIO_PUPDR_PUPD2 | GPIO_PUPDR_PUPD3);
-//	GPIOC->OSPEEDR |=  ((3 << GPIO_OSPEEDR_OSPEED0_Pos) |
-//							  (3 << GPIO_OSPEEDR_OSPEED1_Pos) |
-//							  (3 << GPIO_OSPEEDR_OSPEED2_Pos) |
-//							  (3 << GPIO_OSPEEDR_OSPEED3_Pos));
-//
-//	// configure GPIO pins PC4, PC5, PC6 for Input, with pull down
-//	GPIOC->MODER   &= ~(GPIO_MODER_MODE4 | GPIO_MODER_MODE5 | GPIO_MODER_MODE6 );
-//	GPIOC->PUPDR |= (GPIO_PUPDR_PUPD4_1 | GPIO_PUPDR_PUPD5_1 | GPIO_PUPDR_PUPD6_1);
-//
-//
-//	 // preset PC0, PC1, PC2, PC3 to 0
-//	GPIOC->BRR = (GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 );
 
   //Enable keypad
   Keypad_Init();
+
   /* USER CODE END SysInit */
 
-  /* Initialize all configured peripherals */
-  //MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -118,8 +113,15 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  Keypad_Read();	  // arbitrary delay
-	  //for (int i = 0; i < 500000; i++);
+	  printf("%c \n",Keypad_Read());	  // arbitrary delay
+	  lastKeypadValue = Keypad_Read();
+
+	  if (lastKeypadValue == '*'){
+		  GPIOD->ODR |= 0b01001000;
+	  }
+	  else if(lastKeypadValue == '#'){
+		  GPIOD->ODR &= 0b00110000;
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
