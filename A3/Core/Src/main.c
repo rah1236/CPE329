@@ -1,9 +1,10 @@
 
 #include "main.h"
 #include "keypad.h"
+#include "lcd.h"
+#include "ctype.h"
 
 void SystemClock_Config(void);
-static void MX_GPIO_Init(void);
 
 int main(void)
 {
@@ -15,9 +16,105 @@ int main(void)
   Keypad_Init();
   Lcd_Init();
 
+
+  Lcd_write_string("EE 329 A3 TIMER", 0);
+  char bottomString[] = "*=SET #=GO 00:00";
+
+
+  uint8_t state = 0;
+  uint8_t time_idx;
+
+  uint8_t currentInput;
+  uint8_t lastInput = '\0';
+
+
   while (1)
   {
+	  //Get currently pressed key
+	  currentInput = Keypad_Read();
 
+	  if (lastInput != currentInput){
+		  if(currentInput == '*'){
+			  state = 0;
+		  }
+	  }
+
+	  Lcd_write_string(bottomString, 1);
+
+	  //debug:
+	  bottomString[10] = state | 0x30;
+
+	  switch (state){
+
+	  case 0: //Idle or 'Reset' state
+		  Lcd_write_string("EE 329 A3 TIMER", 0);
+		  bottomString[11] = '0';
+		  bottomString[12] = '0';
+		  bottomString[14] = '0';
+		  bottomString[15] = '0';
+		  time_idx = 0;
+
+		  delay_us(500000);
+		  if (lastInput != currentInput){
+		  		  if(currentInput == '*'){
+		  			  state++;
+		  			  break;
+		  		  }
+		  }
+		  break;
+	  case 1:
+
+		  // Let user know that they can input now
+		  Lcd_write_string("Enter a time:", 0);
+
+		  //If the current input is a number
+		  if (isdigit(currentInput) && currentInput != '\0' && currentInput != '#'){
+			  //And if there is an input delta
+			  if (lastInput != currentInput){
+				  //if the index is at the first 2 digits
+				  if(time_idx < 2){
+					  bottomString[time_idx + 11] = currentInput;
+				  }
+				  //if the index is at the last 2 digits
+				  else{
+					  bottomString[time_idx + 12] = currentInput;
+				  }
+				  //Add to time digit index
+				  time_idx++;
+			  }
+
+		  }
+		  //Check if we have reached the 4th digit
+		  if (time_idx >= 4) {
+			  //Jump to state 2
+			  state++;
+			  //Number conditioning
+			  if( ((int)bottomString[11] & 0x0f) > 5){
+				  bottomString[11] = '5';
+			  }
+			  if( ((int)bottomString[14] & 0x0f) > 5){
+				  bottomString[14] = '5';
+			  }
+			  break;
+		  }
+		  break;
+
+	  case 2:
+		  Lcd_write_string("'#' to start", 0);
+		  if(Keypad_Read() == '#'){
+			  state++;
+		  }
+
+
+		  break;
+	  case 3:
+
+		  break;
+
+	  }
+
+	  //Record last known input for checking delta later
+	  lastInput = currentInput;
   }
 }
 

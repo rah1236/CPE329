@@ -23,6 +23,8 @@
  */
 
 #include "lcd.h"
+#include "string.h"
+
 
 #define LCD_PORT GPIOD
 #define DELAY 50
@@ -93,6 +95,23 @@ void Lcd_write_char( uint8_t letter )  {
    LCD_PORT->ODR   &= ~(LCD_RS);      // RS = LO
 }
 
+
+void Lcd_write_string( char *text , uint8_t row){
+	if (row == 0){
+		Lcd_command(0x80); //Row 1
+	}
+	else {
+		Lcd_command(0xC0); //Row 2
+	}
+	for (int idx = 0; idx < 17; idx++){
+		if (text[idx] == '\0'){
+			Lcd_write_char(' ');
+		}
+		else{
+			Lcd_write_char(text[idx]);
+		}
+	}
+}
 
 void Lcd_Init(void){
 	// configure GPIO pins PD0, PD1, PD2, PD3, PD4, PD5, PD6, PD7 for:
@@ -165,6 +184,8 @@ void Lcd_Init(void){
    }
    Lcd_4b_command( 0x20 ); // fcn set #4: 4b cmd set 4b mode - next 0x28:2-line
    delay_us( 40 );         // remainder of LCD init removed - see LCD datasheets
+
+
    Lcd_command( 0x28 );
    delay_us( 40 );
    Lcd_command( 0x10 ); //Set cursor
@@ -172,6 +193,10 @@ void Lcd_Init(void){
    Lcd_command( 0x0D ); //Display ON; Blinking cursor
    delay_us( 40 );
    Lcd_command( 0x06 ); //Entry mode set
+   delay_us( 40 );
+   delay_us( 40 );
+
+
 }
 
 
