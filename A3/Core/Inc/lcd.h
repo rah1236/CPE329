@@ -25,6 +25,8 @@ void Lcd_4b_command( uint8_t command );
 void Lcd_command( uint8_t command );
 void Lcd_write_char( uint8_t letter );
 void Lcd_write_string( char *text , uint8_t row);
+void Lcd_backlight_on(void);
+void Lcd_backlight_off(void);
 uint8_t Lcd_swapNibbles( uint8_t dataByte );
 
 void SysTick_Init(void);

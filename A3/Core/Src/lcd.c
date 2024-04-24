@@ -113,6 +113,16 @@ void Lcd_write_string( char *text , uint8_t row){
 	}
 }
 
+
+void Lcd_backlight_on(void){
+	 LCD_PORT->ODR |= LCD_BL;
+}
+
+void Lcd_backlight_off(void){
+	 LCD_PORT->ODR &= ~LCD_BL;
+}
+
+
 void Lcd_Init(void){
 	// configure GPIO pins PD0, PD1, PD2, PD3, PD4, PD5, PD6, PD7 for:
 	// output mode, push-pull, no pull up or pull down, high speed

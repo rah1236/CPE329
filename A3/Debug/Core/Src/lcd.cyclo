@@ -5,4 +5,6 @@
 ../Core/Src/lcd.c:76:6:Lcd_command	1
 ../Core/Src/lcd.c:90:6:Lcd_write_char	1
 ../Core/Src/lcd.c:99:6:Lcd_write_string	4
-../Core/Src/lcd.c:116:6:Lcd_Init	2
+../Core/Src/lcd.c:117:6:Lcd_backlight_on	1
+../Core/Src/lcd.c:121:6:Lcd_backlight_off	1
+../Core/Src/lcd.c:126:6:Lcd_Init	2
