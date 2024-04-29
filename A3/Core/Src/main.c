@@ -1,3 +1,42 @@
+/* USER CODE BEGIN Header */
+/*******************************************************************************
+ * EE 329 A3 TIMER
+ *******************************************************************************
+ * @file           : main.c
+ * @brief          : Using the keypad and LCD, creates a timer that
+ * 						anyone can use!
+ * project         : EE 329 S'24 Assignment 3
+ * authors         : Raheel Rehmatullah and Kassandra Martinez Mejia
+ * version         : 1
+ * date            : 4/23/2024
+ * compiler        : STM32CubeIDE v.1.15.0
+ * target          : NUCLEO-L4A6ZG
+ * clocks          : 4 MHz MSI to AHB2
+ * @attention      : (c) 2023 STMicroelectronics.  All rights reserved.
+ *******************************************************************************
+ *	Pin map:
+ * LCD:
+ * PD0 - R/W
+ * PD1 - E
+ * PD2 - RS
+ *
+ * PD3 - D4
+ * PD4 - D5
+ * PD5 - D6
+ * PD6 - D7
+ *
+ * PD7 - Backlight LED
+ *
+ * Keypad:
+ *
+ * Pins PC0, PC1, PC2, PC3 are used on the rows and set high one at a time for polling
+ *
+ * Pins PC4, PC5, PC6 are used on the columns, and are checked upon each
+ *******************************************************************************
+ * TODO
+ * convert delays to seperate module
+ *******************************************************************************
+/* USER CODE END Header */
 
 #include "main.h"
 #include "keypad.h"
@@ -36,22 +75,27 @@ int main(void)
 	  //Get currently pressed key
 	  current_input = Keypad_Read();
 
+	  //Check every cycle if '*' is pressed, and if so, send us to reset state
 	  if (last_input != current_input){
 		  if(current_input == '*'){
 			  state = 0;
 		  }
 	  }
 
+	  // Print the string on row 2 every cycle
 	  Lcd_write_string(bottom_string, 1);
 
-	  //debug:
+	  //debug: prints the current state on the bottom row just before the count
 //	  bottom_string[10] = state | 0x30;
 
 	  switch (state){
 
 	  case 0: //Idle or 'Reset' state
+
 		  Lcd_backlight_on();
+		  //Let user know what this is
 		  Lcd_write_string("EE 329 A3 TIMER", 0);
+		  //Reset everything
 		  bottom_string[11] = '0';
 		  bottom_string[12] = '0';
 		  bottom_string[14] = '0';
@@ -60,6 +104,7 @@ int main(void)
 		  seconds = 0;
 		  time_idx = 0;
 
+		  //Delay for '*' reset
 		  delay_us(500000);
 		  if (last_input != current_input){
 		  		  if(current_input == '*'){
@@ -94,7 +139,7 @@ int main(void)
 		  if (time_idx >= 4) {
 			  //Jump to state 2
 			  state++;
-			  //Number conditioning
+			  //Limiting times to be only up to 59 minutes and 59 seconds
 			  if( ((int)bottom_string[11] & 0x0f) > 5){
 				  bottom_string[11] = '5';
 			  }
@@ -102,6 +147,7 @@ int main(void)
 				  bottom_string[14] = '5';
 			  }
 
+			  //recording what time was entered as an integer
 			  minutes = ((bottom_string[11] & 0x0f) * 10) + (bottom_string[12] & 0x0f);
 			  seconds = ((bottom_string[14] & 0x0f) * 10) + (bottom_string[15] & 0x0f);
 			  break;
@@ -109,6 +155,7 @@ int main(void)
 		  break;
 
 	  case 2:
+		  //Prompt user to start the count down
 		  Lcd_write_string("'#' to start", 0);
 		  if(Keypad_Read() == '#'){
 			  state++;
@@ -117,22 +164,26 @@ int main(void)
 
 		  break;
 	  case 3:
+		  //Let user know that count down has begun
 		  Lcd_write_string("Counting down!", 0);
 
+		  //When count down is complete, move to next state
 		  if (minutes == 0 && seconds == 0){
 			  state++;
 			  break;
 
 		  }
+		  //If we've counted down on the seconds timer, roll us over and subtract from minutes
 		  else if(seconds == 0){
 			  seconds = 59;
 			  --minutes;
 		  }
-
+		  //Otherwise, tick a second down
 		  else{
 			  seconds = seconds - 1;
 		  }
 
+		  //Update string for the count down to be displayed
 		  bottom_string[11] = (minutes / 10) | 0x30;
 		  bottom_string[12] = (minutes - (minutes / 10)*10) | 0x30;
 
@@ -140,12 +191,18 @@ int main(void)
 		  bottom_string[14] = (seconds / 10) | 0x30;
 		  bottom_string[15] = (seconds - (seconds / 10)*10) | 0x30;
 
+		  // One seconds delay (Theoretically)
 		  delay_us(1000000);
 		  break;
 	  case 4:
+		  //Let user know that count down is finished, flash back light
 		  Lcd_write_string("Timer done!!", 0);
 		  Lcd_backlight_off();
 		  delay_us(250000);
+		  Lcd_backlight_on();
+		  delay_us(125000);
+		  Lcd_backlight_off();
+		  delay_us(125000/2);
 		  Lcd_backlight_on();
 		  delay_us(250000);
 		  break;

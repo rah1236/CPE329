@@ -2,7 +2,7 @@
  * lcd.c
  *
  *  Created on: Apr 19, 2024
- *      Author: raheel
+ *      Author: Raheel + Kassandra
  */
 
 /*
@@ -20,6 +20,8 @@
  * PD6 - D7
  *
  * PD7 - Backlight LED
+ *
+ *
  */
 
 #include "lcd.h"
@@ -97,32 +99,45 @@ void Lcd_write_char( uint8_t letter )  {
 
 
 void Lcd_write_string( char *text , uint8_t row){
+/* Writes a whole string to either the top or bottom row of the LCD
+ * text accepts a string of any length, and prints the first 16
+ * characters of that string to the display
+ *
+ * row accepts either a 0 for first row or 1 for the second row
+ *
+ *
+ */
+
 	if (row == 0){
-		Lcd_command(0x80); //Row 1
+		Lcd_command(0x80); // Position cursor at row 1
 	}
 	else {
-		Lcd_command(0xC0); //Row 2
+		Lcd_command(0xC0); //Position cursor at row 2
 	}
 	for (int idx = 0; idx < 17; idx++){
+		//If end of string
 		if (text[idx] == '\0'){
+			// Fill spaces on anything thats not in the string
 			Lcd_write_char(' ');
 		}
 		else{
+			// Otherwise write the character in the string
 			Lcd_write_char(text[idx]);
 		}
 	}
 }
 
-
 void Lcd_backlight_on(void){
+	// Enable backlight on the LCD
 	 LCD_PORT->ODR |= LCD_BL;
 }
 
 void Lcd_backlight_off(void){
+	// Disable backlight on the LCD
 	 LCD_PORT->ODR &= ~LCD_BL;
 }
 
-
+// Enable GPIO pins and initialize the LCD display
 void Lcd_Init(void){
 	// configure GPIO pins PD0, PD1, PD2, PD3, PD4, PD5, PD6, PD7 for:
 	// output mode, push-pull, no pull up or pull down, high speed
@@ -204,9 +219,6 @@ void Lcd_Init(void){
    delay_us( 40 );
    Lcd_command( 0x06 ); //Entry mode set
    delay_us( 40 );
-   delay_us( 40 );
-
-
 }
 
 
