@@ -1,0 +1,34 @@
+21:17:20 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/lcd.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/lcd.d" -MT"Core/Src/lcd.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/lcd.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_hal_msp.d" -MT"Core/Src/stm32l4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_it.d" -MT"Core/Src/stm32l4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_it.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:25:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   25 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:27:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   27 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:50:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   50 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:27:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   27 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6488	     12	   1572	   8072	   1f88	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+
+21:17:21 Build Finished. 0 errors, 3 warnings. (took 693ms)
+

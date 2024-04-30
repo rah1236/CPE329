@@ -1,0 +1,10 @@
+../Core/Src/lcd.c:42:6:SysTick_Init	1
+../Core/Src/lcd.c:52:6:delay_us	2
+../Core/Src/lcd.c:61:6:Lcd_pulse_ENA	1
+../Core/Src/lcd.c:70:6:Lcd_4b_command	1
+../Core/Src/lcd.c:78:6:Lcd_command	1
+../Core/Src/lcd.c:92:6:Lcd_write_char	1
+../Core/Src/lcd.c:101:6:Lcd_write_string	4
+../Core/Src/lcd.c:130:6:Lcd_backlight_on	1
+../Core/Src/lcd.c:135:6:Lcd_backlight_off	1
+../Core/Src/lcd.c:141:6:Lcd_Init	2

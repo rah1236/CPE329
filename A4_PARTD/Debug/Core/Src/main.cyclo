@@ -1,0 +1,15 @@
+../Drivers/CMSIS/Include/core_cm4.h:1679:22:__NVIC_EnableIRQ	2
+../Drivers/CMSIS/Include/core_cm4.h:1809:22:__NVIC_SetPriority	2
+../Drivers/CMSIS/Include/core_cm4.h:2059:26:ITM_SendChar	4
+../Core/Src/main.c:15:5:main	1
+../Core/Src/main.c:45:5:get_user_button_state	1
+../Core/Src/main.c:50:6:setup_TIM2	1
+../Core/Src/main.c:61:6:TIM2_IRQHandler	3
+../Core/Src/main.c:74:6:setup_rng	1
+../Core/Src/main.c:79:10:get_random_number	3
+../Core/Src/main.c:101:6:setup_ext_interrupt	1
+../Core/Src/main.c:113:6:EXTI15_10_IRQHandler	2
+../Core/Src/main.c:121:6:setup_gpio	1
+../Core/Src/main.c:140:5:__io_putchar	1
+../Core/Src/main.c:146:6:SystemClock_Config	4
+../Core/Src/main.c:187:6:Error_Handler	1

@@ -51,7 +51,10 @@ extern "C" {
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
-
+void setup_rng(void);
+void setup_gpio(void);
+uint32_t get_random_number(void);
+int get_user_button_state(void);
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
