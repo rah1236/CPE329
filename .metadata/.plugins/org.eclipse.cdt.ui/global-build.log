@@ -43,3 +43,644 @@ Finished building: default.size.stdout
  
 Finished building: A4_PARTD.list
  
+15:36:05 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-size  A4_PARTD.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6488	     12	   1572	   8072	   1f88	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+15:43:30 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:25:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   25 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:27:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   27 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:50:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   50 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:27:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   27 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6416	     12	   1572	   8000	   1f40	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+15:48:59 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:25:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   25 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:27:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   27 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:50:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   50 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:27:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   27 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6488	     12	   1572	   8072	   1f88	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+15:51:01 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:20:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:26:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   26 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:28:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   28 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:51:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   51 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:28:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   28 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:102:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  102 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:20:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6688	     12	   1572	   8272	   2050	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+15:51:27 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-size  A4_PARTD.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6688	     12	   1572	   8272	   2050	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+15:53:05 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:20:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:28:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   28 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:30:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:53:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   53 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:30:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:104:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  104 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:20:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6692	     12	   1572	   8276	   2054	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+15:56:11 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:20:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:28:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   28 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:30:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:53:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   53 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:30:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:104:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  104 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:20:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6704	     12	   1572	   8288	   2060	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+16:02:16 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:20:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:28:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   28 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:30:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:53:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   53 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:30:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:104:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  104 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:20:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6704	     12	   1572	   8288	   2060	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+16:04:45 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:20:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:28:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   28 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:30:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:53:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   53 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:30:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:104:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  104 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:20:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6696	     12	   1572	   8280	   2058	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+16:13:38 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:20:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:28:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   28 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:30:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:53:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   53 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:30:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:104:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  104 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:20:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6712	     12	   1572	   8296	   2068	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+16:22:49 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:20:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:28:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   28 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:30:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:53:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   53 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:30:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   30 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:104:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  104 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:20:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   20 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6712	     12	   1572	   8296	   2068	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+16:24:24 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-size  A4_PARTD.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6712	     12	   1572	   8296	   2068	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+16:28:20 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:22:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:30:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   30 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:32:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   32 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:55:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   55 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:32:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   32 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:106:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  106 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:22:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6740	     12	   1580	   8332	   208c	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+16:38:16 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:22:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:32:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   32 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:34:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:17:12: warning: unused variable 'time_of_button_press' [-Wunused-variable]
+   17 |   uint32_t time_of_button_press = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:16:12: warning: unused variable 'time_of_light_up' [-Wunused-variable]
+   16 |   uint32_t time_of_light_up = 0;
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:49:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   49 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:34:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c: In function 'TIM2_IRQHandler':
+../Core/Src/main.c:64:7: error: 'time_of_light_up' undeclared (first use in this function)
+   64 |       time_of_light_up = TIM2->CNT;
+      |       ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:64:7: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:100:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  100 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:22:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'EXTI15_10_IRQHandler':
+../Core/Src/main.c:122:13: error: 'time_of_light_up' undeclared (first use in this function)
+  122 |         if (time_of_light_up > 0){
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:123:17: error: 'time_of_button_press' undeclared (first use in this function)
+  123 |                 time_of_button_press = TIM2->CNT;
+      |                 ^~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+16:38:26 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:22:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:32:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   32 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:34:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:17:12: warning: unused variable 'time_of_button_press' [-Wunused-variable]
+   17 |   uint32_t time_of_button_press = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:16:12: warning: unused variable 'time_of_light_up' [-Wunused-variable]
+   16 |   uint32_t time_of_light_up = 0;
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:49:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   49 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:34:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:100:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  100 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:22:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'EXTI15_10_IRQHandler':
+../Core/Src/main.c:122:13: error: 'time_of_light_up' undeclared (first use in this function)
+  122 |         if (time_of_light_up > 0){
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:122:13: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:123:17: error: 'time_of_button_press' undeclared (first use in this function)
+  123 |                 time_of_button_press = TIM2->CNT;
+      |                 ^~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+16:38:37 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:22:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:32:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   32 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:34:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:17:12: warning: unused variable 'time_of_button_press' [-Wunused-variable]
+   17 |   uint32_t time_of_button_press = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:16:12: warning: unused variable 'time_of_light_up' [-Wunused-variable]
+   16 |   uint32_t time_of_light_up = 0;
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:49:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   49 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:34:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:100:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  100 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:22:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6732	     12	   1572	   8316	   207c	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+16:43:35 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:22:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:32:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   32 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:34:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:17:12: warning: unused variable 'time_of_button_press' [-Wunused-variable]
+   17 |   uint32_t time_of_button_press = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:16:12: warning: unused variable 'time_of_light_up' [-Wunused-variable]
+   16 |   uint32_t time_of_light_up = 0;
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:58:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   58 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:34:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:109:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  109 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:22:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6824	     12	   1572	   8408	   20d8	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+16:45:42 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:22:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:32:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   32 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:34:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:17:12: warning: unused variable 'time_of_button_press' [-Wunused-variable]
+   17 |   uint32_t time_of_button_press = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:16:12: warning: unused variable 'time_of_light_up' [-Wunused-variable]
+   16 |   uint32_t time_of_light_up = 0;
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:59:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   59 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:34:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:110:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  110 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:22:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6816	     12	   1572	   8400	   20d0	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 
+16:46:10 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-size  A4_PARTD.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6816	     12	   1572	   8400	   20d0	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+16:47:20 **** Incremental Build of configuration Debug for project A4_PARTD ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:22:3: warning: implicit declaration of function 'setup_ext_interrupt' [-Wimplicit-function-declaration]
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:32:45: warning: suggest parentheses around '-' inside '>>' [-Wparentheses]
+   32 |   uint32_t time_delay = get_random_number() >> 32-25;
+      |                                             ^~
+../Core/Src/main.c:34:3: warning: implicit declaration of function 'setup_TIM2' [-Wimplicit-function-declaration]
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:17:12: warning: unused variable 'time_of_button_press' [-Wunused-variable]
+   17 |   uint32_t time_of_button_press = 0;
+      |            ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:16:12: warning: unused variable 'time_of_light_up' [-Wunused-variable]
+   16 |   uint32_t time_of_light_up = 0;
+      |            ^~~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:59:6: warning: conflicting types for 'setup_TIM2'; have 'void(int)'
+   59 | void setup_TIM2( int iDutyCycle ) {
+      |      ^~~~~~~~~~
+../Core/Src/main.c:34:3: note: previous implicit declaration of 'setup_TIM2' with type 'void(int)'
+   34 |   setup_TIM2(time_delay);
+      |   ^~~~~~~~~~
+../Core/Src/main.c:110:6: warning: conflicting types for 'setup_ext_interrupt'; have 'void(void)'
+  110 | void setup_ext_interrupt(void){
+      |      ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:22:3: note: previous implicit declaration of 'setup_ext_interrupt' with type 'void(void)'
+   22 |   setup_ext_interrupt();
+      |   ^~~~~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A4_PARTD.elf
+ 
+arm-none-eabi-size  A4_PARTD.elf 
+arm-none-eabi-objdump -h -S A4_PARTD.elf  > "A4_PARTD.list"
+   text	   data	    bss	    dec	    hex	filename
+   6816	     12	   1572	   8400	   20d0	A4_PARTD.elf
+Finished building: default.size.stdout
+ 
+Finished building: A4_PARTD.list
+ 

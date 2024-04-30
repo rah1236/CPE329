@@ -7,19 +7,26 @@
 #include "lcd.h"
 #include "stdio.h"
 
-uint32_t time_of_light_up;
 
+uint8_t button_flag;
 
 void SystemClock_Config(void);
 
-int main(void)
-{
+int main(void){
+  uint32_t time_of_light_up = 0;
+  uint32_t time_of_button_press = 0;
+  uint8_t state = 0;
   __enable_irq();
   HAL_Init();
   SystemClock_Config();
+  setup_ext_interrupt();
   setup_rng();
   setup_gpio();
   Lcd_Init();
+
+  Lcd_write_string("EE 329 A4 REACT", 0);
+  Lcd_write_string("PUSH SW TO TRIG", 1);
+
 
   //25 bits at 4MHz is equal to a maximum time delay of 8 seconds
   uint32_t time_delay = get_random_number() >> 32-25;
@@ -28,15 +35,17 @@ int main(void)
 
   while (1)
   {
-//	  if ( (GPIOC->IDR >> 13) != 0){
-//		  Lcd_backlight_off();
-//	  }
-//	  else{
-//		  Lcd_backlight_on();
-//
-//	  }
-//	  uint32_t butts = get_random_number();
-//	  butts = butts/2;
+	  switch(state){
+	  case 0:
+		  if (button_flag == 1){
+			  state++;
+			  button_flag = 0;
+		  }
+		  break;
+	  case 1:
+		  Lcd_write_string("TIME = N.MMM s  ", 1);
+		  break;
+	  }
 
   }
 }
@@ -62,7 +71,7 @@ void TIM2_IRQHandler(void) {
    if (TIM2->SR & TIM_SR_CC1IF) {      // triggered by CCR1 event ...
       TIM2->SR &= ~(TIM_SR_CC1IF);     // manage the flag
       GPIOB->ODR |= GPIO_PIN_7;                                // <-- manage GPIO pin here
-      time_of_light_up = TIM2->CNT;
+//      time_of_light_up = TIM2->CNT;
    }
    if (TIM2->SR & TIM_SR_UIF) {        // triggered by ARR event ...
       TIM2->SR &= ~(TIM_SR_UIF);       // manage the flag
@@ -99,22 +108,28 @@ uint32_t get_random_number(void){
 
 //Setting up external interrupt on user button
 void setup_ext_interrupt(void){
-	 // Set EXTI13 (external interrupt) to rising edge trigger
+
+		//Tell the syscfg that we want to use pin C13 for our interrupt
+		SYSCFG->EXTICR[3] |= SYSCFG_EXTICR4_EXTI13_PC;
+
+		// Set EXTI13 (external interrupt) to rising edge trigger
 	    EXTI->RTSR1 |= EXTI_RTSR1_RT13;
 
 	    // Enable interrupt on EXTI13
 	    EXTI->IMR1 |= EXTI_IMR1_IM13;
 
 	    // Enable EXTI13 interrupt in NVIC
-	    NVIC_SetPriority(EXTI15_10_IRQn, 0); // Set priority (adjust as needed)
+	    NVIC_SetPriority(EXTI15_10_IRQn, 5); // Set priority (adjust as needed)
 	    NVIC_EnableIRQ(EXTI15_10_IRQn);
+	    __enable_irq(); // global IRQ enable
+
 }
 
 void EXTI15_10_IRQHandler(void) {
     if (EXTI->PR1 & EXTI_PR1_PIF13) {
         // Clear the pending interrupt flag
-        EXTI->PR1 |= EXTI_PR1_PIF13;
-        Lcd_backlight_off();
+        EXTI->PR1 &= ~(EXTI_PR1_PIF13);
+        button_flag = 1;
     }
 }
 
