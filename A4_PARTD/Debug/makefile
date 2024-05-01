@@ -60,8 +60,8 @@ all: main-build
 main-build: A4_PARTD.elf secondary-outputs
 
 # Tool invocations
-A4_PARTD.elf A4_PARTD.map: $(OBJS) $(USER_OBJS) C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A4_PARTD\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+A4_PARTD.elf A4_PARTD.map: $(OBJS) $(USER_OBJS) /Users/raheel/Documents/CPE329/A4_PARTD/STM32L4A6ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "A4_PARTD.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/raheel/Documents/CPE329/A4_PARTD/STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A4_PARTD.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
