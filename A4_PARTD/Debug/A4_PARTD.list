@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0000300c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000050ed  00000000  00000000  0000303c  2**0
+ 12 .debug_info   000050d4  00000000  00000000  0000303c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 0000113c  00000000  00000000  00008129  2**0
+ 13 .debug_abbrev 0000114a  00000000  00000000  00008110  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000005e8  00000000  00000000  00009268  2**3
+ 14 .debug_aranges 000005e8  00000000  00000000  00009260  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 0000044e  00000000  00000000  00009850  2**0
+ 15 .debug_rnglists 0000044e  00000000  00000000  00009848  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00027ec7  00000000  00000000  00009c9e  2**0
+ 16 .debug_macro  00027e00  00000000  00000000  00009c96  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   00005b8d  00000000  00000000  00031b65  2**0
+ 17 .debug_line   00005b8f  00000000  00000000  00031a96  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000f21f5  00000000  00000000  000376f2  2**0
+ 18 .debug_str    000f1f3f  00000000  00000000  00037625  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  001298e7  2**0
+ 19 .comment      00000043  00000000  00000000  00129564  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000015d0  00000000  00000000  0012992c  2**2
+ 20 .debug_frame  000015d0  00000000  00000000  001295a8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000056  00000000  00000000  0012aefc  2**0
+ 21 .debug_line_str 00000056  00000000  00000000  0012ab78  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -711,7 +711,7 @@ __STATIC_FORCEINLINE void __enable_irq(void)
  80005a4:	080005b5 	.word	0x080005b5
  80005a8:	0800061b 	.word	0x0800061b
  80005ac:	08000627 	.word	0x08000627
- 80005b0:	080006ff 	.word	0x080006ff
+ 80005b0:	080006f9 	.word	0x080006f9
 	  case 0:
 		  //Reset LED
 	      GPIOB->ODR &= ~GPIO_PIN_7;
@@ -895,22 +895,22 @@ __STATIC_FORCEINLINE void __enable_irq(void)
  80006e2:	2101      	movs	r1, #1
  80006e4:	4618      	mov	r0, r3
  80006e6:	f7ff fe3b 	bl	8000360 <Lcd_write_string>
-		  			  delay_us(500000);
- 80006ea:	481a      	ldr	r0, [pc, #104]	@ (8000754 <main+0x1ec>)
- 80006ec:	f7ff fd7e 	bl	80001ec <delay_us>
 		  			  state++;
- 80006f0:	4b0c      	ldr	r3, [pc, #48]	@ (8000724 <main+0x1bc>)
- 80006f2:	781b      	ldrb	r3, [r3, #0]
- 80006f4:	3301      	adds	r3, #1
- 80006f6:	b2da      	uxtb	r2, r3
- 80006f8:	4b0a      	ldr	r3, [pc, #40]	@ (8000724 <main+0x1bc>)
- 80006fa:	701a      	strb	r2, [r3, #0]
+ 80006ea:	4b0e      	ldr	r3, [pc, #56]	@ (8000724 <main+0x1bc>)
+ 80006ec:	781b      	ldrb	r3, [r3, #0]
+ 80006ee:	3301      	adds	r3, #1
+ 80006f0:	b2da      	uxtb	r2, r3
+ 80006f2:	4b0c      	ldr	r3, [pc, #48]	@ (8000724 <main+0x1bc>)
+ 80006f4:	701a      	strb	r2, [r3, #0]
 		  		  }
 
 		  break;
- 80006fc:	e00c      	b.n	8000718 <main+0x1b0>
+ 80006f6:	e00f      	b.n	8000718 <main+0x1b0>
 
 	  case 3:
+		  delay_us(1000000);
+ 80006f8:	4816      	ldr	r0, [pc, #88]	@ (8000754 <main+0x1ec>)
+ 80006fa:	f7ff fd77 	bl	80001ec <delay_us>
 		  // Reset when button is pushed
 		  if (button_flag == 1){
  80006fe:	4b0e      	ldr	r3, [pc, #56]	@ (8000738 <main+0x1d0>)
@@ -952,7 +952,7 @@ __STATIC_FORCEINLINE void __enable_irq(void)
  8000748:	cccccccd 	.word	0xcccccccd
  800074c:	d1b71759 	.word	0xd1b71759
  8000750:	10624dd3 	.word	0x10624dd3
- 8000754:	0007a120 	.word	0x0007a120
+ 8000754:	000f4240 	.word	0x000f4240
 
 08000758 <setup_TIM2>:
 	  }

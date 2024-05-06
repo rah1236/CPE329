@@ -1,3 +1,27 @@
+/* USER CODE BEGIN Header */
+/*******************************************************************************
+ * EE 329 A4 Parts A-C, CONFIGURED FOR PART B
+ *******************************************************************************
+ * @file           : main.c
+ * @brief          : This is code that allows the ability to measure timers
+ * 					 and their interupts on the STM32 Platform
+ * project         : EE 329 S'24 Assignment 4
+ * authors         : Raheel Rehmatullah and Logan Tom
+ * version         : 1
+ * date            : 5/1/2024
+ * compiler        : STM32CubeIDE v.1.15.0
+ * target          : NUCLEO-L4A6ZG
+ * clocks          : 4 MHz MSI to AHB2
+ * @attention      : (c) 2023 STMicroelectronics.  All rights reserved.
+ *******************************************************************************
+ * Pin Map:
+ *
+ * PB7 - Onboard Blue LED
+ * PB8 - GPIO to measure the ISR length
+ * PA8 - GPIO to measure the system clock
+ *
+ *******************************************************************************
+/* USER CODE END Header */
 
 #include "main.h"
 
@@ -74,7 +98,10 @@ void setup_TIM2( int iDutyCycle ) {
    TIM2->CR1 |= TIM_CR1_CEN;                       // start TIM2 CR1
 }
 
-// Part A
+
+
+
+// Part A IRQHandler
 //void TIM2_IRQHandler(void) {
 //   if (TIM2->SR & TIM_SR_CC1IF) {      // triggered by CCR1 event ...
 //      TIM2->SR &= ~(TIM_SR_CC1IF);     // manage the flag
@@ -86,7 +113,7 @@ void setup_TIM2( int iDutyCycle ) {
 //   }
 //}
 
-//Part B
+//Part B IRQHandler
 void TIM2_IRQHandler(void) {
    	GPIOB->ODR |= (GPIO_PIN_8);        // Toggle LED at 10 kHz
     if (TIM2->SR & TIM_SR_CC1IF) {      // triggered by CCR1 event ...

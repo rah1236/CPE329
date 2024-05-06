@@ -1,0 +1,14 @@
+../Core/Src/uart.c:3:6:LPUART_init	1
+../Core/Src/uart.c:33:6:LPUART_print	3
+../Core/Src/uart.c:42:6:LPUART_printESC	1
+../Core/Src/uart.c:48:6:LPUART1_IRQHandler	7
+../Core/Src/uart.c:73:6:LPUART_moveCursor	1
+../Core/Src/uart.c:84:6:LPUART_resetCursor	1
+../Core/Src/uart.c:88:6:LPUART_clearLine	1
+../Core/Src/uart.c:92:6:LPUART_clearScreen	1
+../Core/Src/uart.c:96:6:LPUART_clearAttributes	1
+../Core/Src/uart.c:100:6:LPUART_setBold	1
+../Core/Src/uart.c:104:6:LPUART_setUnderline	1
+../Core/Src/uart.c:108:6:LPUART_setBlink	1
+../Core/Src/uart.c:112:6:LPUART_setTextColor	1
+../Core/Src/uart.c:120:6:LPUART_setBackgroundColor	1
