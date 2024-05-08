@@ -2,8 +2,11 @@
 #include "main.h"
 #include "uart.h"
 #include "stdio.h"
+#include "string.h"
 
 void SystemClock_Config(void);
+
+extern char keyPressed;
 
 int main(void)
 {
@@ -12,32 +15,74 @@ int main(void)
   HAL_Init();
   SystemClock_Config();
   LPUART_init();
-
   LPUART_clearScreen();
-  LPUART_resetCursor();
- // LPUART_moveCursor(10, 0);
 
-  LPUART_print("abcdefghijklmnopqrstuvwxyz");
+  int playerLocation[2] = {0, 12};
 
-  int row = 0;
 
-  char displayBuffer[20][80];
-  for (int x; x > 80; x++){
-	  for (int y; y > 20; y++){
-		  displayBuffer[y][x] = 'A';
-	    }
+  char defaultString[80] =
+		  "AAAAAAAAAABBBBBBBBBBAAAAAAAAAABBBBBBBBBBAAAAAAAAAABBBBBBBBBBAAAAAAAAAABBBBBBBBB\0";
+
+
+  char displayBuffer[24][81];
+
+  for (int row = 0; row < 24; row++){
+		strcpy(displayBuffer[row],"////////////////////----------------------------------------\\\\\\\\\\\\\\\\\\\\\0");
   }
+
+
+
+  int refreshing = 1;
+  int row = 0;
 
 
   while (1)
   {
-	  LPUART_moveCursor(row, 0);
-	  if (row > 20){
-		  LPUART_resetCursor();
-		  row = 0;
+	  if (refreshing == 1){
+		  refreshScreen(displayBuffer);
+		  refreshing = 0;
 	  }
-	  LPUART_print(displayBuffer[row]);
-	  row++;
+
+	  switch(keyPressed){
+	  case 'w':
+		  refreshing = 1;
+		  playerLocation[1]--;
+		  keyPressed = 0;
+		  break;
+	  case 's':
+		  refreshing = 1;
+		  playerLocation[1]++;
+		  keyPressed = 0;
+		  break;
+	  case 'a':
+		  refreshing = 1;
+		  playerLocation[0]--;
+		  keyPressed = 0;
+		  break;
+	  case 'd':
+		  refreshing = 1;
+		  playerLocation[0]++;
+		  keyPressed = 0;
+		  break;
+	  default:
+		  refreshing = 0;
+		  keyPressed = 0;
+		  break;
+	  }
+	  for (int row = 0; row < 24; row++){
+	  		strcpy(displayBuffer[row],"                                                                                \0");
+	    }
+
+	  displayBuffer [playerLocation[1]] [playerLocation[0]] = 'T';
+	  displayBuffer [playerLocation[1] + 1] [playerLocation[0]+1] = 'T';
+	  displayBuffer [playerLocation[1] - 1] [playerLocation[0]-1] = 'T';
+	  displayBuffer [playerLocation[1] - 1] [playerLocation[0]+1] = 'T';
+	  displayBuffer [playerLocation[1] + 1] [playerLocation[0]-1] = 'T';
+	  displayBuffer [playerLocation[1]] [playerLocation[0]+1] = 'T';
+	  displayBuffer [playerLocation[1]] [playerLocation[0]-1] = 'T';
+	  displayBuffer [playerLocation[1] - 1] [playerLocation[0]] = 'T';
+	  displayBuffer [playerLocation[1] + 1] [playerLocation[0]] = 'T';
+
 
 
 
@@ -46,6 +91,13 @@ int main(void)
 }
 
 
+void refreshScreen(char displayBuffer[][81]) {
+
+	for (int row = 0; row < 24; row++){
+		LPUART_moveCursor(row, 0); // Move cursor to the beginning of the current row
+		LPUART_print(displayBuffer[row]); // Print the string from the current row
+	}
+}
 
 
 void SystemClock_Config(void)

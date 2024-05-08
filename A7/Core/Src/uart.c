@@ -1,5 +1,7 @@
 #include "uart.h"
 
+char keyPressed;
+
 void LPUART_init(){
 	//power avail and RCC config
 	PWR->CR2 |= (PWR_CR2_IOSV);
@@ -64,8 +66,9 @@ void LPUART1_IRQHandler(void){
 		   LPUART_setTextColor(7);
 		   break;
 	   default:
-		  while(!(LPUART1->ISR & USART_ISR_TXE));
-		  LPUART1->TDR = character;
+		   keyPressed = character;
+//		  while(!(LPUART1->ISR & USART_ISR_TXE));
+//		  LPUART1->TDR = character;
 	  }
 	}
 }

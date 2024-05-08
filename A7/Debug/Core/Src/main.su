@@ -1,3 +1,4 @@
-../Core/Src/main.c:8:5:main	1624	static
-../Core/Src/main.c:51:6:SystemClock_Config	96	static
-../Core/Src/main.c:92:6:Error_Handler	4	static,ignoring_inline_asm
+../Core/Src/main.c:11:5:main	2064	static
+../Core/Src/main.c:93:6:refreshScreen	24	static
+../Core/Src/main.c:102:6:SystemClock_Config	96	static
+../Core/Src/main.c:143:6:Error_Handler	4	static,ignoring_inline_asm
