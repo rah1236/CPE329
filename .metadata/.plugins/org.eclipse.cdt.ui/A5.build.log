@@ -1,0 +1,27 @@
+01:43:29 **** Incremental Build of configuration Debug for project A5 ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:49:6: warning: unused variable 'iLoopFlag' [-Wunused-variable]
+   49 |  int iLoopFlag = 1;
+      |      ^~~~~~~~~
+../Core/Src/main.c:61:13: warning: 'lastKeyPressed' is used uninitialized [-Wuninitialized]
+   61 |          if ( (keyPressed != lastKeyPressed) && (keyPressed != '\0') && (keyPressed != '*') ){
+      |             ^
+../Core/Src/main.c:53:10: note: 'lastKeyPressed' was declared here
+   53 |  uint8_t lastKeyPressed;
+      |          ^~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "A5.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A5\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A5.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: A5.elf
+ 
+arm-none-eabi-size  A5.elf 
+arm-none-eabi-objdump -h -S A5.elf  > "A5.list"
+   text	   data	    bss	    dec	    hex	filename
+   6600	     12	   1572	   8184	   1ff8	A5.elf
+Finished building: default.size.stdout
+ 
+Finished building: A5.list
+ 
+
+01:43:30 Build Finished. 0 errors, 2 warnings. (took 649ms)
+

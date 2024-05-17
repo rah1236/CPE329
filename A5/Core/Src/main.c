@@ -1,6 +1,6 @@
 #include "main.h"
 #include "dac.h"
-#include "uart.h"
+#include "keypad.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 /* USER CODE END Includes */
@@ -20,7 +20,6 @@
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 void setup_user_LEDs_PBSW(void);
-void LPUART1_IRQHandler( void );
 /* USER CODE END PFP */
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
@@ -43,50 +42,62 @@ int main(void)
  /* USER CODE END SysInit */
  /* Initialize all configured peripherals */
  /* USER CODE BEGIN 2 */
- LPUART_init();
+ Keypad_Init();
  setup_user_LEDs_PBSW();
  DAC_Init();
- //DAC_write( 3300 );
+ DAC_write( 0 );
  int iLoopFlag = 1;
+ int iVoltage = 0;
+ int iCount = 0;
+ uint8_t keyPressed;
+ uint8_t lastKeyPressed;
  /* USER CODE END 2 */
  /* Infinite loop */
  /* USER CODE BEGIN WHILE */
  while (1)
  {
-	  while( iLoopFlag ) {
-		  int iVoltage = 0;
-		  for( int iCount = 0; iCount<3; iCount++) {
-			  while( !( giNumFlag ) )
-				  ;
-			  GPIOB->BSRR |= GPIO_PIN_7;
-			  __disable_irq;
-			  giNumFlag = 0;
+	 keyPressed = Keypad_Read();
+
+	 if ( (keyPressed != lastKeyPressed) && (keyPressed != '\0') && (keyPressed != '*') ){
+		 ginumRecv = keyPressed & 0x0F;
 			  switch( iCount ) {
 			  case 0:
 				  //Voltage value ones place
 				  iVoltage += ( 1000 * ginumRecv );
+				  iCount++;
 				  break;
 			  case 1:
 				  //voltage value in hundreds of mV
 				  iVoltage += ( 100 * ginumRecv );
+				  iCount++;
 				  break;
 			  case 2:
 				  //voltage value in tens of mV
 				  iVoltage += ( 10 * ginumRecv );
+				  iCount++;
 				  break;
 			  default:
 				  break;
 			  }
-			  __enable_irq;
 		  }
+
+		  if ( (keyPressed == '*') && (keyPressed != lastKeyPressed) ){
+			  iCount = 0;
+			  iVoltage = 0;
+			  GPIOB->ODR &= ~GPIO_PIN_7;
+		  }
+
 		  //User has finished inputting desired voltage (in mV)
-		  dac_data_type iDacVolt = DAC_volt_conv( iVoltage );
-		  DAC_write( iDacVolt );
-		  iLoopFlag = 0;
+	 	  if(iCount >= 3){
+			  GPIOB->ODR |= GPIO_PIN_7;
+			  dac_data_type iDacVolt = DAC_volt_conv( iVoltage );
+			  DAC_write( iDacVolt );
+	 	  }
+	 	lastKeyPressed = keyPressed;
 	  }
    /* USER CODE END WHILE */
    /* USER CODE BEGIN 3 */
- }
+
  /* USER CODE END 3 */
 }
 /**
@@ -134,56 +145,7 @@ void SystemClock_Config(void)
  * @retval None
  */
 /* USER CODE BEGIN 4 */
-void LPUART1_IRQHandler( void ) {
-	uint8_t charRecv;
-	if (LPUART1->ISR & USART_ISR_RXNE) {
-		charRecv = LPUART1->RDR;
-		switch ( charRecv ) {
-		case '0':
-			ginumRecv = 0;
-			giNumFlag = 1;
-			break;
-		case '1':
-			ginumRecv = 1;
-			giNumFlag = 1;
-			break;
-		case '2':
-			ginumRecv = 2;
-			giNumFlag = 1;
-			break;
-		case '3':
-			ginumRecv = 3;
-			giNumFlag = 1;
-			break;
-		case '4':
-			ginumRecv = 4;
-			giNumFlag = 1;
-			break;
-		case '5':
-			ginumRecv = 5;
-			giNumFlag = 1;
-			break;
-		case '6':
-			ginumRecv = 6;
-			giNumFlag = 1;
-			break;
-		case '7':
-			ginumRecv = 7;
-			giNumFlag = 1;
-			break;
-		case '8':
-			ginumRecv = 8;
-			giNumFlag = 1;
-			break;
-		case '9':
-			ginumRecv = 9;
-			giNumFlag = 1;
-			break;
-		default:
-			break;
-		} // end switch
-	}
-}
+
 void setup_user_LEDs_PBSW(void) {
 	RCC->AHB2ENR |= ( RCC_AHB2ENR_GPIOBEN |
 					  RCC_AHB2ENR_GPIOCEN );

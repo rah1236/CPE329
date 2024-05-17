@@ -62,8 +62,8 @@ void DAC_Init( void ) {
 	SPI_init();
 	DAC_PORT->BSRR |= ( CS | PS );
 }
-dac_data_type DAC_volt_conv( dac_data_type voltage ) {
-	dac_data_type dac_word_out = ( ( voltage / 4096 ) * 4095  );
+dac_data_type DAC_volt_conv( dac_data_type millivolts_requested ) {
+	dac_data_type dac_word_out = ( millivolts_requested * (4112 / 4096) ) - 6;
 	return ( dac_word_out );
 }
 void DAC_write ( uint16_t data ) {
