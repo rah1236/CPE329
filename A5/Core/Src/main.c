@@ -1,59 +1,42 @@
+/* USER CODE BEGIN Header */
+/*******************************************************************************
+ * EE 329 A5: SPI based DAC
+ *******************************************************************************
+ * @file           : main.c
+ * @brief          : This is a programmable voltage output leveraging the SPI
+ * 					bus on the STM32 and the MCP4281
+ * project         : EE 329 S'24 Assignment 5
+ * authors         : Raheel Rehmatullah and Colin Lucio
+ * version         : 1
+ * date            : 5_17_2024
+ * compiler        : STM32CubeIDE v.1.15.0
+ * target          : NUCLEO-L4A6ZG
+ * clocks          : 4 MHz MSI to AHB2
+ * @attention      : (c) 2023 STMicroelectronics.  All rights reserved.
+ *******************************************************************************
+/* USER CODE END Header */
 #include "main.h"
 #include "dac.h"
 #include "keypad.h"
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-/* USER CODE END Includes */
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-/* USER CODE END PTD */
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-/* USER CODE END PD */
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-/* USER CODE END PM */
-/* Private variables ---------------------------------------------------------*/
-/* USER CODE BEGIN PV */
-/* USER CODE END PV */
-/* Private function prototypes -----------------------------------------------*/
+
 void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
 void setup_user_LEDs_PBSW(void);
-/* USER CODE END PFP */
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
 int ginumRecv = 0;
 int giNumFlag = 0;
-/* USER CODE END 0 */
+
 int main(void)
 {
- /* USER CODE BEGIN 1 */
- /* USER CODE END 1 */
- /* MCU Configuration--------------------------------------------------------*/
- /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
  HAL_Init();
- /* USER CODE BEGIN Init */
- /* USER CODE END Init */
- /* Configure the system clock */
  SystemClock_Config();
- /* USER CODE BEGIN SysInit */
-//  DAC_PORT->MODER &=
- /* USER CODE END SysInit */
- /* Initialize all configured peripherals */
- /* USER CODE BEGIN 2 */
  Keypad_Init();
  setup_user_LEDs_PBSW();
  DAC_Init();
- DAC_write( 0 );
- int iLoopFlag = 1;
+ DAC_write(0);
  int iVoltage = 0;
  int iCount = 0;
  uint8_t keyPressed;
  uint8_t lastKeyPressed;
- /* USER CODE END 2 */
- /* Infinite loop */
- /* USER CODE BEGIN WHILE */
+
  while (1)
  {
 	 keyPressed = Keypad_Read();
@@ -89,16 +72,27 @@ int main(void)
 
 		  //User has finished inputting desired voltage (in mV)
 	 	  if(iCount >= 3){
-			  GPIOB->ODR |= GPIO_PIN_7;
-			  dac_data_type iDacVolt = DAC_volt_conv( iVoltage );
-			  DAC_write( iDacVolt );
+	 		 GPIOB->ODR |= GPIO_PIN_7;
+	 		  if ((iVoltage <= 3300) && (iVoltage != 0) ){
+				  dac_data_type iDacVolt = DAC_volt_conv( iVoltage );
+				  DAC_write( iDacVolt );
+	 		  }
+	 		  else if (iVoltage == 0){
+				  DAC_write( 0 );
+	 		  }
+	 		  else if (iVoltage > 3300){
+					  DAC_write( 3300 );
+		 		  }
+	 		  else {
+					  dac_data_type iDacVolt = DAC_volt_conv( iVoltage );
+					  DAC_write( iVoltage );
+			  }
+
+
 	 	  }
 	 	lastKeyPressed = keyPressed;
 	  }
-   /* USER CODE END WHILE */
-   /* USER CODE BEGIN 3 */
 
- /* USER CODE END 3 */
 }
 /**
  * @brief System Clock Configuration

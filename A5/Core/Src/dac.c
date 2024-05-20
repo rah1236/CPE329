@@ -20,7 +20,6 @@ void SPI_init( void ) {
 	SPI1->CR1 |= SPI_CR1_SPE; // re-enable SPI for ops
 }
 
-// Poop
 void DAC_Init( void ) {
 	// enable clock for GPIOA & SPI1
 	RCC->AHB2ENR |= (RCC_AHB2ENR_GPIOAEN); // GPIOA: DAC NSS/SCK/SDO
@@ -64,6 +63,9 @@ void DAC_Init( void ) {
 }
 dac_data_type DAC_volt_conv( dac_data_type millivolts_requested ) {
 	dac_data_type dac_word_out = ( millivolts_requested * (4112 / 4096) ) - 6;
+	if (dac_word_out > 3300){
+		dac_word_out = 3300;
+	}
 	return ( dac_word_out );
 }
 void DAC_write ( uint16_t data ) {
