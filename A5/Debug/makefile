@@ -60,8 +60,8 @@ all: main-build
 main-build: A5.elf secondary-outputs
 
 # Tool invocations
-A5.elf A5.map: $(OBJS) $(USER_OBJS) C:\Users\rahee\Documents\CPE329\A5\STM32L4A6ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "A5.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A5\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A5.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+A5.elf A5.map: $(OBJS) $(USER_OBJS) /Users/raheel/Documents/CPE329/A5/STM32L4A6ZGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "A5.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/Users/raheel/Documents/CPE329/A5/STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A5.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
