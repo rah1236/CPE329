@@ -2,7 +2,7 @@
  * i2c.h
  *
  *  Created on: May 19, 2024
- *      Author: raheel
+ *      Author: raheel and seth :P
  */
 
 #ifndef SRC_I2C_H_

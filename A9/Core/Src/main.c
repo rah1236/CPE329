@@ -1,21 +1,49 @@
-
+/* USER CODE BEGIN Header */
+/*******************************************************************************
+ * EE 329 A9: EEPROM!
+ *******************************************************************************
+ * @file           : main.c
+ * @brief          : This is an example of using I2C to write to an EEPROM
+ * Specifically the 24LC256 from Microchip
+ * project         : EE 329 S'24 Assignment 5
+ * authors         : Raheel Rehmatullah and Seth Cherry
+ * version         : 1
+ * date            : 5_22_2024
+ * compiler        : STM32CubeIDE v.1.15.0
+ * target          : NUCLEO-L4A6ZG
+ * clocks          : 4 MHz MSI to AHB2
+ * @attention      : (c) 2023 STMicroelectronics.  All rights reserved.
+ *******************************************************************************
+/* USER CODE END Header */
 #include "main.h"
 #include "i2c.h"
 
-#define DEVICE_ADDRESS 0x05
-
+#define DEVICE_ADDRESS 0xA2
+#define DATA_TO_SEND 0x55
 
 void SystemClock_Config(void);
 
 int main(void)
 {
 
+
+
   HAL_Init();
 
   SystemClock_Config();
   I2C_init();
 
-  I2C_write(DEVICE_ADDRESS, 0x55, 0x0102);
+  //Write Data to EEPROM
+  I2C_write(DEVICE_ADDRESS, DATA_TO_SEND, 0x05);
+
+  //Delay
+  for(int i = 0; i < 50000; i++);
+
+  //Check if the data read is the same as received, if so, turn on the LED
+  if(DATA_TO_SEND == (I2C_read( DEVICE_ADDRESS,  0x05))){
+	  GPIOB->ODR |= (GPIO_ODR_OD7_Pos);
+  }
+
 
   while (1){
 
@@ -71,6 +99,12 @@ void Error_Handler(void)
   {
   }
   /* USER CODE END Error_Handler_Debug */
+}
+
+void user_io_init(void){
+	RCC->AHB2ENR |= (RCC_AHB2ENR_GPIOCEN);   // enable GPIOC clock
+	GPIOC->MODER &= ~(GPIO_MODER_MODE13); // Set button pin to input mode
+	GPIOC->PUPDR |= (GPIO_PUPDR_PUPD13_1); //Enable pull up
 }
 
 #ifdef  USE_FULL_ASSERT

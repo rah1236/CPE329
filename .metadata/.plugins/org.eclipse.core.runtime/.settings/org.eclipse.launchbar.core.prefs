@@ -11,5 +11,5 @@ org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:A3\ Debug/activeLaunchTarget=nu
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:A4_PARTD\ Debug/activeLaunchMode=debug
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:A5\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:A5\ Debug/activeLaunchTarget=null\:---
-org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:A9\ Debug/activeLaunchMode=debug
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:A9\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ATwo\ Debug/activeLaunchMode=debug
