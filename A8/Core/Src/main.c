@@ -3,11 +3,11 @@
 #include "uart.h"
 #include "delay.h"
 
-#define SAMPLE_COUNT 10000
+#define SAMPLE_COUNT 50
 
 uint8_t ADC_conversion_flag = 0;
 uint16_t ADC_last_read;
-uint16_t ADC_readings[100000];
+uint16_t ADC_readings[SAMPLE_COUNT];
 uint8_t ADC_reading_index = 0;
 uint16_t ADC_average;
 uint16_t ADC_min = 4095;
@@ -34,13 +34,13 @@ int main(void)
 
 
 
-			if (ADC_last_read < ADC_min) {
-				ADC_min = ADC_last_read;
+			if (ADC1->DR < ADC_min) {
+				ADC_min = ADC1->DR;
 			}
 
 
-			if (ADC_last_read > ADC_max){
-				ADC_max = ADC_last_read;
+			if (ADC1->DR > ADC_max){
+				ADC_max = ADC1->DR;
 			}
 
 			uint32_t sum = 0;
@@ -48,19 +48,45 @@ int main(void)
 					sum += ADC_readings[index];
 			}
 
-			ADC_average = sum/SAMPLE_COUNT;
+			ADC_average = (sum/SAMPLE_COUNT);
 
 //		  ADC_average = get_average(ADC_readings, 100);
 		  //ADC_min = get_min(ADC_readings, 100);
 		  //ADC_max = get_max(ADC_readings, 100);
 
-		  char* fart = int_to_str(ADC_average);
-		  LPUART_print(fart);
+		  char* ADC_max_cnt_str = int_to_str(ADC_max);
+		  char* ADC_min_cnt_str = int_to_str(ADC_min);
+		  char* ADC_avg_cnt_str = int_to_str(ADC_average);
+
+		  char* ADC_max_str = int_to_str(ADC_max * 3300/4095);
+		  char* ADC_min_str = int_to_str((ADC_min * 3300/4095) / 1000);
+		  char* ADC_avg_str = int_to_str(ADC_average * 3300/4095);
+
+		  LPUART_print("ADC counts volts\0");
+		  LPUART_moveCursor(2,0);
+		  LPUART_print("MIN   ");
+		  LPUART_print(ADC_min_cnt_str);
+		  LPUART_print("   ");
+		  LPUART_print(ADC_min_str);
+		  LPUART_print(".");
+//		  LPUART_print((ADC_min * 3300/4095)/100 | 0x30);
+//		  LPUART_print((ADC_min * 3300/4095)/10 | 0x30);
+
+
 		  LPUART_print("\r");
 
-//		  delay_us(500);
+
+		  delay_us(5000);
 		  LPUART_clearScreen();
-		  free(fart);
+		  LPUART_resetCursor();
+
+		  free(ADC_max_cnt_str);
+		  free(ADC_min_cnt_str);
+		  free(ADC_avg_cnt_str);
+		  free(ADC_max_str);
+		  free(ADC_min_str);
+		  free(ADC_avg_str);
+
 		  ADC_conversion_flag = 0;                         //Reset Flag
 		  ADC1->CR |= ADC_CR_ADSTART;                // start 1st conversion
 

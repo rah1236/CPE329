@@ -1,9 +1,9 @@
 ../Core/Src/main.c:18:5:main	5
-../Core/Src/main.c:73:7:int_to_str	3
-../Core/Src/main.c:98:10:get_average	2
-../Core/Src/main.c:106:10:get_min	3
-../Core/Src/main.c:116:10:get_max	3
-../Core/Src/main.c:126:6:ADC_init	3
-../Core/Src/main.c:161:6:ADC1_2_IRQHandler	2
-../Core/Src/main.c:174:6:SystemClock_Config	4
-../Core/Src/main.c:214:6:Error_Handler	1
+../Core/Src/main.c:99:7:int_to_str	3
+../Core/Src/main.c:124:10:get_average	2
+../Core/Src/main.c:132:10:get_min	3
+../Core/Src/main.c:142:10:get_max	3
+../Core/Src/main.c:152:6:ADC_init	3
+../Core/Src/main.c:187:6:ADC1_2_IRQHandler	3
+../Core/Src/main.c:200:6:SystemClock_Config	4
+../Core/Src/main.c:240:6:Error_Handler	1
