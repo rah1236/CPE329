@@ -52,6 +52,11 @@ extern "C" {
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
+void ADC_init(void);
+uint16_t get_max(uint16_t array[], uint16_t size_of_array);
+uint16_t get_min(uint16_t array[], uint16_t size_of_array);
+uint16_t get_average(uint16_t array[], uint16_t size_of_array);
+char* int_to_str(int num);
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */

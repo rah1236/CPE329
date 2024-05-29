@@ -23,5 +23,6 @@ void LPUART_setUnderline();
 void LPUART_setBlink();
 void LPUART_setTextColor(unsigned int color);
 void LPUART_setBackgroundColor(unsigned int color);
+void LPUART_return(void);
 
 #endif

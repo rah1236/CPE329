@@ -49,27 +49,27 @@ void LPUART_printESC(const char* message){
 
 void LPUART1_IRQHandler(void){
 	//if data is in recieve buffer then read and decode
-    uint8_t character;
-	if (LPUART1->ISR & USART_ISR_RXNE){
-	  character = LPUART1->RDR;
-	  switch(character){
-	   case 'R':
-		   LPUART_setTextColor(1);
-		   break;
-	   case 'G':
-		   LPUART_setTextColor(2);
-		   break;
-	   case 'B':
-		   LPUART_setTextColor(4);
-		   break;
-	   case 'W':
-		   LPUART_setTextColor(7);
-		   break;
-	   default:
-		  while(!(LPUART1->ISR & USART_ISR_TXE));
-		  LPUART1->TDR = character;
-	  }
-	}
+//    uint8_t character;
+//	if (LPUART1->ISR & USART_ISR_RXNE){
+//	  character = LPUART1->RDR;
+//	  switch(character){
+//	   case 'R':
+//		   LPUART_setTextColor(1);
+//		   break;
+//	   case 'G':
+//		   LPUART_setTextColor(2);
+//		   break;
+//	   case 'B':
+//		   LPUART_setTextColor(4);
+//		   break;
+//	   case 'W':
+//		   LPUART_setTextColor(7);
+//		   break;
+//	   default:
+//		  while(!(LPUART1->ISR & USART_ISR_TXE));
+//		  LPUART1->TDR = character;
+//	  }
+//	}
 }
 
 void LPUART_moveCursor(int spaces, int lines){
@@ -109,6 +109,10 @@ void LPUART_setUnderline(){
 
 void LPUART_setBlink(){
 	LPUART_printESC("5m");
+}
+
+void LPUART_return(){
+	LPUART_printESC("015");
 }
 
 void LPUART_setTextColor(unsigned int color){
