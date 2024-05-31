@@ -1,791 +1,217 @@
-18:38:22 **** Incremental Build of configuration Debug for project A9 ****
+21:41:45 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5112	     12	   1572	   6696	   1a28	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:23:53 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/spi.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5560	     12	   1572	   7144	   1be8	A9.elf
+   6224	     12	   1572	   7808	   1e80	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
+Finished building: FinalProject.list
  
-19:25:17 **** Incremental Build of configuration Debug for project A9 ****
+22:14:21 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-size  A9.elf 
+arm-none-eabi-size  FinalProject.elf 
    text	   data	    bss	    dec	    hex	filename
-   5560	     12	   1572	   7144	   1be8	A9.elf
+   6224	     12	   1572	   7808	   1e80	FinalProject.elf
 Finished building: default.size.stdout
  
-19:48:49 **** Incremental Build of configuration Debug for project A9 ****
+22:23:56 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5548	     12	   1572	   7132	   1bdc	A9.elf
+   5880	     12	   1572	   7464	   1d28	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
+Finished building: FinalProject.list
  
-20:09:28 **** Incremental Build of configuration Debug for project A9 ****
+22:24:10 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
    text	   data	    bss	    dec	    hex	filename
-   5584	     12	   1572	   7168	   1c00	A9.elf
+   5880	     12	   1572	   7464	   1d28	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
- 
-20:09:42 **** Incremental Build of configuration Debug for project A9 ****
+22:25:13 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-size  A9.elf 
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/spi.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
+ 
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5584	     12	   1572	   7168	   1c00	A9.elf
+   5884	     12	   1572	   7468	   1d2c	FinalProject.elf
 Finished building: default.size.stdout
  
-20:10:08 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+Finished building: FinalProject.list
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+22:26:58 **** Incremental Build of configuration Debug for project FinalProject ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/spi.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
+ 
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5584	     12	   1572	   7168	   1c00	A9.elf
+   5868	     12	   1572	   7452	   1d1c	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
+Finished building: FinalProject.list
  
-20:17:55 **** Incremental Build of configuration Debug for project A9 ****
+22:34:50 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-../Core/Src/i2c.c: In function 'I2C_init':
-../Core/Src/i2c.c:44:27: error: 'EEPROM_ADDRESS' undeclared (first use in this function)
-   44 |         I2C1->CR2   |=  ( EEPROM_ADDRESS << (I2C_CR2_SADD_Pos) ); // device addr SHL 1
-      |                           ^~~~~~~~~~~~~~
-../Core/Src/i2c.c:44:27: note: each undeclared identifier is reported only once for each function it appears in
-make: *** [Core/Src/subdir.mk:37: Core/Src/i2c.o] Error 1
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:21:19: error: expected identifier or '(' before numeric constant
+   21 |           for(int 1 = 0; i < 10000; i++){};
+      |                   ^
+../Core/Src/main.c:21:26: error: 'i' undeclared (first use in this function)
+   21 |           for(int 1 = 0; i < 10000; i++){};
+      |                          ^
+../Core/Src/main.c:21:26: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
 "make -j16 all" terminated with exit code 2. Build might be incomplete.
-20:18:33 **** Incremental Build of configuration Debug for project A9 ****
+22:34:57 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5608	     12	   1572	   7192	   1c18	A9.elf
+   5888	     12	   1572	   7472	   1d30	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
+Finished building: FinalProject.list
  
-20:19:59 **** Incremental Build of configuration Debug for project A9 ****
+22:37:41 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5584	     12	   1572	   7168	   1c00	A9.elf
+   5868	     12	   1572	   7452	   1d1c	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
+Finished building: FinalProject.list
  
-20:20:34 **** Incremental Build of configuration Debug for project A9 ****
+22:40:58 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
    text	   data	    bss	    dec	    hex	filename
-   5580	     12	   1572	   7164	   1bfc	A9.elf
+   5868	     12	   1572	   7452	   1d1c	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
- 
-20:23:00 **** Incremental Build of configuration Debug for project A9 ****
+22:45:48 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/spi.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5556	     12	   1572	   7140	   1be4	A9.elf
+   5868	     12	   1572	   7452	   1d1c	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
+Finished building: FinalProject.list
  
-20:24:38 **** Incremental Build of configuration Debug for project A9 ****
+22:50:11 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5532	     12	   1572	   7116	   1bcc	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-20:25:21 **** Build of configuration Debug for project A3 ****
-make -j16 all 
-arm-none-eabi-size  A3.elf 
-   text	   data	    bss	    dec	    hex	filename
-   7440	     12	   1572	   9024	   2340	A3.elf
-Finished building: default.size.stdout
- 
-20:25:21 **** Build of configuration Debug for project A5 ****
-make -j16 all 
-arm-none-eabi-size  A5.elf 
-   text	   data	    bss	    dec	    hex	filename
-   6600	     12	   1572	   8184	   1ff8	A5.elf
-Finished building: default.size.stdout
- 
-20:25:21 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-size  A9.elf 
-   text	   data	    bss	    dec	    hex	filename
-   5532	     12	   1572	   7116	   1bcc	A9.elf
-Finished building: default.size.stdout
- 
-20:25:37 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-../Core/Src/i2c.c: In function 'I2C_write':
-../Core/Src/i2c.c:47:27: error: 'EEPROM_ADDRESS' undeclared (first use in this function)
-   47 |         I2C1->CR2   |=  ( EEPROM_ADDRESS << (I2C_CR2_SADD_Pos) ); // device addr SHL 1
-      |                           ^~~~~~~~~~~~~~
-../Core/Src/i2c.c:47:27: note: each undeclared identifier is reported only once for each function it appears in
-make: *** [Core/Src/subdir.mk:37: Core/Src/i2c.o] Error 1
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/spi.o"
+../Core/Src/spi.c: In function 'SPI_read':
+../Core/Src/spi.c:94:9: error: 'tempc' undeclared (first use in this function)
+   94 |         tempc = (SPI1->DR | 0x7FF) >> 25;
+      |         ^~~~~
+../Core/Src/spi.c:94:9: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/subdir.mk:40: Core/Src/spi.o] Error 1
 "make -j16 all" terminated with exit code 2. Build might be incomplete.
-20:25:59 **** Incremental Build of configuration Debug for project A9 ****
+22:50:28 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/spi.o"
+../Core/Src/spi.c: In function 'SPI_read':
+../Core/Src/spi.c:86:18: warning: variable 'data' set but not used [-Wunused-but-set-variable]
+   86 |         uint32_t data;
+      |                  ^~~~
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5532	     12	   1572	   7116	   1bcc	A9.elf
+   5884	     12	   1572	   7468	   1d2c	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
+Finished building: FinalProject.list
  
-20:27:22 **** Incremental Build of configuration Debug for project A9 ****
+22:51:15 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/spi.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5568	     12	   1572	   7152	   1bf0	A9.elf
+   5880	     12	   1572	   7464	   1d28	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
+Finished building: FinalProject.list
  
-20:33:15 **** Incremental Build of configuration Debug for project A9 ****
+22:58:49 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/spi.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5544	     12	   1572	   7128	   1bd8	A9.elf
+   5888	     12	   1572	   7472	   1d30	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
+Finished building: FinalProject.list
  
-20:38:26 **** Incremental Build of configuration Debug for project A9 ****
+23:01:24 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/spi.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5544	     12	   1572	   7128	   1bd8	A9.elf
+   5888	     12	   1572	   7472	   1d30	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
+Finished building: FinalProject.list
  
-20:38:46 **** Incremental Build of configuration Debug for project A9 ****
+23:02:29 **** Incremental Build of configuration Debug for project FinalProject ****
 make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
+arm-none-eabi-gcc "../Core/Src/spi.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/spi.d" -MT"Core/Src/spi.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/spi.o"
+arm-none-eabi-gcc -o "FinalProject.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\FinalProject\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="FinalProject.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: FinalProject.elf
  
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
+arm-none-eabi-size  FinalProject.elf 
+arm-none-eabi-objdump -h -S FinalProject.elf  > "FinalProject.list"
    text	   data	    bss	    dec	    hex	filename
-   5544	     12	   1572	   7128	   1bd8	A9.elf
+   5888	     12	   1572	   7472	   1d30	FinalProject.elf
 Finished building: default.size.stdout
  
-Finished building: A9.list
- 
-20:40:52 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5532	     12	   1572	   7116	   1bcc	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-17:19:51 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5568	     12	   1572	   7152	   1bf0	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-17:35:35 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5568	     12	   1572	   7152	   1bf0	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-17:37:03 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5544	     12	   1572	   7128	   1bd8	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-17:47:06 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-size  A9.elf 
-   text	   data	    bss	    dec	    hex	filename
-   5544	     12	   1572	   7128	   1bd8	A9.elf
-Finished building: default.size.stdout
- 
-17:47:33 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5544	     12	   1572	   7128	   1bd8	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-17:50:21 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5568	     12	   1572	   7152	   1bf0	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-17:51:56 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-size  A9.elf 
-   text	   data	    bss	    dec	    hex	filename
-   5568	     12	   1572	   7152	   1bf0	A9.elf
-Finished building: default.size.stdout
- 
-17:53:03 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5544	     12	   1572	   7128	   1bd8	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-17:54:39 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5544	     12	   1572	   7128	   1bd8	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-17:57:46 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5548	     12	   1572	   7132	   1bdc	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-17:58:19 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5548	     12	   1572	   7132	   1bdc	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:00:58 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5560	     12	   1572	   7144	   1be8	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:01:53 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5548	     12	   1572	   7132	   1bdc	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:07:16 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5560	     12	   1572	   7144	   1be8	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:07:58 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5568	     12	   1572	   7152	   1bf0	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:19:47 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5568	     12	   1572	   7152	   1bf0	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:21:59 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5572	     12	   1572	   7156	   1bf4	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:25:06 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5572	     12	   1572	   7156	   1bf4	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:26:06 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5572	     12	   1572	   7156	   1bf4	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:27:37 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5568	     12	   1572	   7152	   1bf0	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:35:24 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5720	     12	   1572	   7304	   1c88	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:39:48 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-../Core/Src/i2c.c: In function 'I2C_read':
-../Core/Src/i2c.c:93:22: error: 'tx_data' undeclared (first use in this function)
-   93 |         I2C1->TXDR = tx_data;
-      |                      ^~~~~~~
-../Core/Src/i2c.c:93:22: note: each undeclared identifier is reported only once for each function it appears in
-make: *** [Core/Src/subdir.mk:37: Core/Src/i2c.o] Error 1
-"make -j16 all" terminated with exit code 2. Build might be incomplete.
-18:40:07 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5880	     12	   1572	   7464	   1d28	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:41:16 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5896	     12	   1572	   7480	   1d38	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:42:43 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-size  A9.elf 
-   text	   data	    bss	    dec	    hex	filename
-   5896	     12	   1572	   7480	   1d38	A9.elf
-Finished building: default.size.stdout
- 
-18:49:38 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5896	     12	   1572	   7480	   1d38	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-18:50:21 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5896	     12	   1572	   7480	   1d38	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:12:15 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5920	     12	   1572	   7504	   1d50	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:12:58 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5924	     12	   1572	   7508	   1d54	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:17:03 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5924	     12	   1572	   7508	   1d54	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:17:13 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5920	     12	   1572	   7504	   1d50	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:21:27 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5920	     12	   1572	   7504	   1d50	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:22:33 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5920	     12	   1572	   7504	   1d50	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:28:12 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/i2c.d" -MT"Core/Src/i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/i2c.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5920	     12	   1572	   7504	   1d50	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:29:03 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5920	     12	   1572	   7504	   1d50	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:30:27 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5920	     12	   1572	   7504	   1d50	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:33:03 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5920	     12	   1572	   7504	   1d50	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
- 
-19:33:31 **** Incremental Build of configuration Debug for project A9 ****
-make -j16 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L4A6xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "A9.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\rahee\Documents\CPE329\A9\STM32L4A6ZGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="A9.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: A9.elf
- 
-arm-none-eabi-size  A9.elf 
-arm-none-eabi-objdump -h -S A9.elf  > "A9.list"
-   text	   data	    bss	    dec	    hex	filename
-   5920	     12	   1572	   7504	   1d50	A9.elf
-Finished building: default.size.stdout
- 
-Finished building: A9.list
+Finished building: FinalProject.list
  

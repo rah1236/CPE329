@@ -1,0 +1,4 @@
+../Core/Src/spi.c:4:6:SPI_init	1
+../Core/Src/spi.c:64:15:DAC_volt_conv	2
+../Core/Src/spi.c:71:6:SPI_write	4
+../Core/Src/spi.c:85:10:SPI_read	1
