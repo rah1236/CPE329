@@ -52,6 +52,7 @@ void SPI_init( void ) {
 	// CR2 (reset value = 0x0700 : 8b data)
 	SPI1->CR2 &= ~( SPI_CR2_TXEIE | SPI_CR2_RXNEIE ); // disable FIFO intrpts
 	SPI1->CR2 &= ~( SPI_CR2_FRF); // Moto frame format
+	SPI1->CR2 |= SPI_CR2_SSOE; // SS output is enabled in master mode
 	SPI1->CR2 |= SPI_CR2_NSSP; // auto-generate NSS pulse
 	SPI1->CR2 |= SPI_CR2_DS; // 16-bit data
 	SPI1->CR2 |= SPI_CR2_SSOE; // enable SS output
@@ -86,20 +87,23 @@ uint32_t SPI_read ( void ) {
 	uint16_t d1;
 	uint16_t d2;
 	uint32_t data;
-	uint32_t tempc;
+	float tempc;
 
-	SPI1->CR1 |= ( SPI_CR1_RXONLY ); // recv-only ON
 	SPI_PORT->ODR &= ~CS;	//set CS low to start receiving data
+	SPI1->CR1 |= ( SPI_CR1_RXONLY ); // recv-only ON
 	//while ( ~( SPI1->SR & SPI_SR_RXNE ) )
-		;
+	//	;
 		//wait for full receive buffer
+	for(int i = 0; i < 10; i++){};
+
+
+	SPI1->CR1 &= ~( SPI_CR1_RXONLY ); // recv-only OFF
+	SPI_PORT->ODR |= CS; //end data transmission, switch ~CS back to high
+
 	d1 = SPI1->DR;
 	d2 = SPI1->DR;
 	data = (d1 << 16 | d2);
-	tempc = (data | 0x7FF) >> 25;
-
-	SPI_PORT->ODR |= CS; //end data transmission, switch ~CS back to high
-	SPI1->CR1 &= ~( SPI_CR1_RXONLY ); // recv-only OFF
+	tempc = ((data) >> 18) * 0.25;
 
 	return(tempc);
 }
