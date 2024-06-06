@@ -4,6 +4,7 @@
 #include "uart.h"
 #include "stdlib.h"
 #include "PID.h"
+#include "tim2_timer.h"
 
 void SystemClock_Config(void);
 int main(void)
