@@ -11,15 +11,44 @@ int main(void)
   HAL_Init();
   SystemClock_Config();
   SPI_init();
- // LPUART_init();
+  LPUART_init();
+    RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIOGEN); //Heater
+  	GPIOG->MODER   &= ~(GPIO_MODER_MODE1 );
+  	GPIOG->MODER   |=  (GPIO_MODER_MODE1_0 );
+  	GPIOG->OTYPER  &= ~(GPIO_OTYPER_OT1 );
+  	GPIOG->PUPDR   &= ~(GPIO_PUPDR_PUPD1);
+  	GPIOG->OSPEEDR |=  (3 << GPIO_OSPEEDR_OSPEED1_Pos);
+  	GPIOG->ODR |= GPIO_PIN_1;
 
+    RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIOFEN); //Fan
+  	GPIOF->MODER   &= ~(GPIO_MODER_MODE0 );
+  	GPIOF->MODER   |=  (GPIO_MODER_MODE0_0 );
+  	GPIOF->OTYPER  &= ~(GPIO_OTYPER_OT0 );
+  	GPIOF->PUPDR   &= ~(GPIO_PUPDR_PUPD0);
+  	GPIOF->OSPEEDR |=  (3 << GPIO_OSPEEDR_OSPEED0_Pos);
+  	GPIOF->ODR &= ~GPIO_PIN_0;
+
+//	GPIOG->ODR &= ~GPIO_PIN_1;
+//  	GPIOF->ODR |= GPIO_PIN_0;
 
   while (1)
   {
 	  char buffer [sizeof(uint32_t)*8+1];
-	  itoa(SPI_read(), buffer, 10);
-	  //for(int i = 0; i < 10000; i++){};
-	 // LPUART_print(buffer);
+	  uint32_t temp = SPI_read();
+//	  if (temp > 0){
+		  itoa(temp, buffer, 10);
+//	  }
+
+	  for(int i = 0; i < 10000; i++){};
+	  LPUART_print(buffer);
+	  LPUART_print("\r");
+	  LPUART_print("\n");
+
+	  if (temp > 220){
+		GPIOG->ODR &= ~GPIO_PIN_1;
+	  	GPIOF->ODR |= GPIO_PIN_0;
+	  }
+
   }
 }
 

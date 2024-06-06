@@ -3,6 +3,8 @@
 
 void SPI_init( void ) {
 	// enable clock for GPIOA & SPI1
+
+
 	RCC->AHB2ENR |= (RCC_AHB2ENR_GPIOAEN); // GPIOA: DAC NSS/SCK/SDO
 	RCC->APB2ENR |= (RCC_APB2ENR_SPI1EN); // SPI1 port
 	/* USER ADD GPIO configuration of MODER/PUPDR/OTYPER/OSPEEDR registers HERE */
@@ -87,7 +89,7 @@ uint32_t SPI_read ( void ) {
 	uint16_t d1;
 	uint16_t d2;
 	uint32_t data;
-	float tempc;
+	uint32_t tempc;
 
 	SPI_PORT->ODR &= ~CS;	//set CS low to start receiving data
 	SPI1->CR1 |= ( SPI_CR1_RXONLY ); // recv-only ON
@@ -103,7 +105,7 @@ uint32_t SPI_read ( void ) {
 	d1 = SPI1->DR;
 	d2 = SPI1->DR;
 	data = (d1 << 16 | d2);
-	tempc = ((data) >> 18) * 0.25;
-
+	//tempc = ((data) >> 18) * 0.25;
+	tempc = ((data) >> 20);
 	return(tempc);
 }
