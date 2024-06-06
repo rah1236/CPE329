@@ -5,6 +5,8 @@
 #include "stdlib.h"
 #include "tim2_timer.h"
 #include "PID.h"
+#include "LCD.h"
+#include "keypad.h"
 
 void SystemClock_Config(void);
 
@@ -24,9 +26,12 @@ int main(void)
     int set_point = 100;
   HAL_Init();
   SystemClock_Config();
+  SysTick_Init();                     //setup delay function
+  Keypad_Config();
   SPI_init();
   //setup_TIM2(50);
   LPUART_init();
+  LCD_init();
     RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIOGEN); //Heater
     GPIOG->MODER   &= ~(GPIO_MODER_MODE1 );
     GPIOG->MODER   |=  (GPIO_MODER_MODE1_0 );
@@ -47,33 +52,85 @@ int main(void)
 //      GPIOF->ODR |= GPIO_PIN_0;
     uint32_t temp;
     uint32_t newtemp;
-
+    uint8_t state = 0;
+    uint8_t user_temp_select_place_index = 3;
   while (1)
   {
+
+
       newtemp = SPI_read();
+
+      switch(state){
+      case 0:
+    	  set_point = 15;
+		  LCD_set_cursor(0, 0);
+    	  LCD_write_text("click * to enter ");
+		  LCD_set_cursor(0, 1);
+    	  LCD_write_text("a setpoint  ");
+
+		  for(int i = 0; i < 500000; i++){};
+
+
+		  LCD_set_cursor(0, 0);
+    	  LCD_write_text("or click 'START'");
+		  LCD_set_cursor(0, 1);
+    	  LCD_write_text("  to reflow  ");
+
+		  for(int i = 0; i < 500000; i++){};
+
+    	  if (Keypad_IsAnyKeyPressed() == 1){
+    		  if (Keypad_WhichKeyIsPressed() == 10){
+    			  LCD_set_cursor(0, 0);
+    	    	  LCD_write_text("                ");
+    	    	  LCD_set_cursor(0, 1);
+    	    	  LCD_write_text("                ");
+
+    			  state++;
+    		  }
+
+    	  }
+    	  break;
+      case 1:
+    	  if (Keypad_IsAnyKeyPressed() == 1){
+			  if (Keypad_WhichKeyIsPressed() == 10){
+      case 2:
+			char buffer [sizeof(uint32_t)*8+1];
+
+
+			//set_input(temp);
+			for(int i = 0; i < 10000; i++){};
+			LCD_set_cursor(0, 0);
+			LCD_write_text("Setpoint = ");
+			itoa(set_point, buffer, 10);
+			LCD_write_text(buffer);
+			LCD_write_text("C");
+
+			if (temp > 0){
+				itoa(temp, buffer, 10);
+			}
+			LCD_set_cursor(0, 1);
+			LCD_write_text("Temp = ");
+			LCD_write_text(buffer);
+			LCD_write_text("C");
+
+			break;
+      }
+
+
       if (newtemp != 0){
-          temp = newtemp;
-      }
-      if (temp > (set_point + MARGIN_HIGH)){
-          GPIOG->ODR &= ~(GPIO_PIN_1);     // Turn off
-          GPIOF->ODR |= GPIO_PIN_0;
-      }
-      else if (temp < (set_point - MARGIN_LOW)){
-          GPIOG->ODR |= GPIO_PIN_1;         // Turn on
-          GPIOF->ODR &= ~(GPIO_PIN_0);
-      }
-
-      char buffer [sizeof(uint32_t)*8+1];
-
-    if (temp > 0){
-          itoa(temp, buffer, 10);
-    }
-      //set_input(temp);
-
-      for(int i = 0; i < 10000; i++){};
-      LPUART_print(buffer);
-      LPUART_print("\r");
-      LPUART_print("\n");
+         	           temp = newtemp;
+         	       }
+         	       if (temp > (set_point + MARGIN_HIGH)){
+         	           GPIOG->ODR &= ~(GPIO_PIN_1);     // Turn off
+         	           GPIOF->ODR |= GPIO_PIN_0;
+         	       }
+         	       else if (temp < (set_point - MARGIN_LOW)){
+         	           GPIOG->ODR |= GPIO_PIN_1;         // Turn on
+         	           GPIOF->ODR &= ~(GPIO_PIN_0);
+         	       }
+//      LPUART_print(buffer);
+//      LPUART_print("\r");
+//      LPUART_print("\n");
       //int duty = pid_output(KP, KI, KD);// Get PID response
       //TIM2_set_duty_cycle(duty);        // Set duty cycle based on PID
 
