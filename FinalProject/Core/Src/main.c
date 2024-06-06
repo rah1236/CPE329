@@ -7,6 +7,7 @@
 #include "PID.h"
 #include "LCD.h"
 #include "keypad.h"
+#include "data.c"
 
 void SystemClock_Config(void);
 
