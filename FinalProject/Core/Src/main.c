@@ -3,58 +3,106 @@
 #include "spi.h"
 #include "uart.h"
 #include "stdlib.h"
-#include "PID.h"
 #include "tim2_timer.h"
+#include "PID.h"
 
 void SystemClock_Config(void);
+
+#define KP 30
+#define KI 100
+#define KD 10
+
+#define MARGIN_HIGH 0
+#define MARGIN_LOW 1
+
+uint32_t temp ;
+
+//static int sec_passed = 0;
+
 int main(void)
 {
-
+    int set_point = 100;
   HAL_Init();
   SystemClock_Config();
   SPI_init();
+  //setup_TIM2(50);
   LPUART_init();
     RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIOGEN); //Heater
-  	GPIOG->MODER   &= ~(GPIO_MODER_MODE1 );
-  	GPIOG->MODER   |=  (GPIO_MODER_MODE1_0 );
-  	GPIOG->OTYPER  &= ~(GPIO_OTYPER_OT1 );
-  	GPIOG->PUPDR   &= ~(GPIO_PUPDR_PUPD1);
-  	GPIOG->OSPEEDR |=  (3 << GPIO_OSPEEDR_OSPEED1_Pos);
-  	GPIOG->ODR |= GPIO_PIN_1;
+    GPIOG->MODER   &= ~(GPIO_MODER_MODE1 );
+    GPIOG->MODER   |=  (GPIO_MODER_MODE1_0 );
+    GPIOG->OTYPER  &= ~(GPIO_OTYPER_OT1 );
+    GPIOG->PUPDR   &= ~(GPIO_PUPDR_PUPD1);
+    GPIOG->OSPEEDR |=  (3 << GPIO_OSPEEDR_OSPEED1_Pos);
+    GPIOG->ODR &= ~GPIO_PIN_1;
 
     RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIOFEN); //Fan
-  	GPIOF->MODER   &= ~(GPIO_MODER_MODE0 );
-  	GPIOF->MODER   |=  (GPIO_MODER_MODE0_0 );
-  	GPIOF->OTYPER  &= ~(GPIO_OTYPER_OT0 );
-  	GPIOF->PUPDR   &= ~(GPIO_PUPDR_PUPD0);
-  	GPIOF->OSPEEDR |=  (3 << GPIO_OSPEEDR_OSPEED0_Pos);
-  	GPIOF->ODR &= ~GPIO_PIN_0;
+    GPIOF->MODER   &= ~(GPIO_MODER_MODE0 );
+    GPIOF->MODER   |=  (GPIO_MODER_MODE0_0 );
+    GPIOF->OTYPER  &= ~(GPIO_OTYPER_OT0 );
+    GPIOF->PUPDR   &= ~(GPIO_PUPDR_PUPD0);
+    GPIOF->OSPEEDR |=  (3 << GPIO_OSPEEDR_OSPEED0_Pos);
+    GPIOF->ODR &= ~GPIO_PIN_0;
 
-//	GPIOG->ODR &= ~GPIO_PIN_1;
-//  	GPIOF->ODR |= GPIO_PIN_0;
+//  GPIOG->ODR &= ~GPIO_PIN_1;
+//      GPIOF->ODR |= GPIO_PIN_0;
+    uint32_t temp;
+    uint32_t newtemp;
 
   while (1)
   {
-	  char buffer [sizeof(uint32_t)*8+1];
-	  uint32_t temp = SPI_read();
-    set_input(temp);
+      newtemp = SPI_read();
+      if (newtemp != 0){
+          temp = newtemp;
+      }
+      if (temp > (set_point + MARGIN_HIGH)){
+          GPIOG->ODR &= ~(GPIO_PIN_1);     // Turn off
+          GPIOF->ODR |= GPIO_PIN_0;
+      }
+      else if (temp < (set_point - MARGIN_LOW)){
+          GPIOG->ODR |= GPIO_PIN_1;         // Turn on
+          GPIOF->ODR &= ~(GPIO_PIN_0);
+      }
 
-//	  if (temp > 0){
-		  itoa(temp, buffer, 10);
-//	  }
+      char buffer [sizeof(uint32_t)*8+1];
 
-	  for(int i = 0; i < 10000; i++){};
-	  LPUART_print(buffer);
-	  LPUART_print("\r");
-	  LPUART_print("\n");
+    if (temp > 0){
+          itoa(temp, buffer, 10);
+    }
+      //set_input(temp);
 
-	  if (temp > 220){
-		GPIOG->ODR &= ~GPIO_PIN_1;
-	  	GPIOF->ODR |= GPIO_PIN_0;
-	  }
+      for(int i = 0; i < 10000; i++){};
+      LPUART_print(buffer);
+      LPUART_print("\r");
+      LPUART_print("\n");
+      //int duty = pid_output(KP, KI, KD);// Get PID response
+      //TIM2_set_duty_cycle(duty);        // Set duty cycle based on PID
 
   }
 }
+
+/*------------------------------------------------------------------------------
+ * Function : TIM2_IRQHandler();
+ * IN       : None
+ * OUT      : None
+ * Action   : Interrupt that is called by TIM2 timer on CCR1 event, calculates
+ *            number of ms that have passed and updates static variable
+ * Author   : Jack Ryan (jar) - jryan39@calpoly.edu
+ * Version  : 0.1
+ * Date    `: 240501
+------------------------------------------------------------------------------*/
+//void TIM2_IRQHandler(void) {
+//   if (TIM2->SR & TIM_SR_CC1IF) {       // triggered by CCR1 event ...
+//       TIM2->SR &= ~(TIM_SR_CC1IF);
+//       GPIOG->ODR &= ~GPIO_PIN_1;        // Turn off heater
+//   }
+//   if (TIM2->SR & TIM_SR_UIF) {         // triggered by ARR event ...
+//       TIM2->SR &= ~(TIM_SR_UIF);
+//       GPIOG->ODR |= (GPIO_PIN_1);     // Turn on heater
+////      sec_passed += 1/SAMPLE_RATE;      // Increment time
+//   }
+//}
+
+
 
 void SystemClock_Config(void)
 {
