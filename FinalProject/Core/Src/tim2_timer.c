@@ -80,7 +80,7 @@ void reset_TIM2_timer(void){
 ------------------------------------------------------------------------------*/
 void TIM2_IRQHandler(void) {
    if (TIM2->SR & TIM_SR_CC1IF) {       // triggered by CCR1 event ...
-       TIM2->SR &= ~(TIM_SR_CC1F);
+       TIM2->SR &= ~(TIM_SR_CC1IF);
        GPIOG->ODR |= GPIO_PIN_1;        // Turn on heater
    }
    if (TIM2->SR & TIM_SR_UIF) {         // triggered by ARR event ...

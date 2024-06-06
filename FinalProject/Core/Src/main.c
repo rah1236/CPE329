@@ -3,6 +3,7 @@
 #include "spi.h"
 #include "uart.h"
 #include "stdlib.h"
+#include "PID.h"
 
 void SystemClock_Config(void);
 int main(void)
@@ -35,6 +36,8 @@ int main(void)
   {
 	  char buffer [sizeof(uint32_t)*8+1];
 	  uint32_t temp = SPI_read();
+    set_input(temp);
+
 //	  if (temp > 0){
 		  itoa(temp, buffer, 10);
 //	  }

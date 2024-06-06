@@ -20,14 +20,15 @@
 #define INC_TIM2_TIMER_H_
 
 // Number of clock cycles for 5kHz wave
-#define PERIOD      4000000/SAMPLE_RATE     // Constant ARR
+#define PERIOD      4000000/SAMPLE_RATE     // 1s period
 #define CCR_INC     1000                    // 1 ms delay
 
 // Function prototypes
 void setup_TIM2(int iDutyCycle);
 void TIM2_IRQHandler(void);
 void reset_TIM2_timer(void);
-int get_ms_passed(void);
+void TIM2_set_duty_cycle(int percentage);
+int get_sec_passed(void);
 
 
 #endif /* INC_TIM2_TIMER_H_ */
