@@ -36,15 +36,16 @@ const int kd = 10;
 void setup_TIM2( int iDutyCycle ) {
     //Configure GPIO pins PA0 and PA1 for TIM2_CH1 and TIM2_CH2
     initialize_pin(GPIOA, 0, ALT_FUNCT_MODE, 0, 0, HIGH_SPEED);
-    initialize_pin(GPIOA, 1, ALT_FUNCT_MODE, 0, 0, HIGH_SPEED);
+    initialize_pin(GPIOB, 3, ALT_FUNCT_MODE, 0, 0, HIGH_SPEED);
     GPIOA->AFR[0] &= ~(0xF << 0);
     GPIOA->AFR[0] |= (0x1);
-    GPIOA->AFR[0] &= ~(0xF << 4);
-    GPIOA->AFR[0] |= (0x1 << 4);
+    GPIOA->AFR[0] &= ~(0xF << 4*3);
+    GPIOA->AFR[0] |= (0x1 << 4*3);
    // Enable clock and interrupts
    RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;           // enable clock for TIM2
    TIM2->DIER |= (TIM_DIER_CC1IE | TIM_DIER_UIE);  // enable event gen, rcv CCR1
-   TIM2->ARR = PERIOD;                             // ARR = T = counts @4MHz
+   TIM2->PSC |= 0x9C3F; // 1Hz counter
+   TIM2->ARR = 480*100;                             // ARR = T = counts @4MHz
    TIM2->CCR1 = iDutyCycle;                        // ticks for duty cycle
    TIM2->SR &= ~(TIM_SR_CC1IF | TIM_SR_UIF);       // clr IRQ flag in status reg
    NVIC->ISER[0] |= (1 << (TIM2_IRQn & 0x1F));     // set NVIC interrupt: 0x1F
@@ -78,19 +79,19 @@ void reset_TIM2_timer(void){
  * Version  : 0.1
  * Date    `: 240501
 ------------------------------------------------------------------------------*/
-void TIM2_IRQHandler(void) {
-   if (TIM2->SR & TIM_SR_CC1IF) {       // triggered by CCR1 event ...
-       TIM2->SR &= ~(TIM_SR_CC1IF);
-       GPIOG->ODR |= GPIO_PIN_1;        // Turn on heater
-   }
-   if (TIM2->SR & TIM_SR_UIF) {         // triggered by ARR event ...
-       TIM2->SR &= ~(TIM_SR_UIF);
-       GPIOG->ODR &= ~(GPIO_PIN_1);     // Turn off heater
-      sec_passed += 1/SAMPLE_RATE;      // Increment time
-      int duty = pid_output(kp, ki, kd);// Get PID response
-      TIM2_set_duty_cycle(duty);        // Set duty cycle based on PID
-   }
-}
+//void TIM2_IRQHandler(void) {
+//   if (TIM2->SR & TIM_SR_CC1IF) {       // triggered by CCR1 event ...
+//       TIM2->SR &= ~(TIM_SR_CC1IF);
+//       GPIOG->ODR |= GPIO_PIN_1;        // Turn on heater
+//   }
+//   if (TIM2->SR & TIM_SR_UIF) {         // triggered by ARR event ...
+//       TIM2->SR &= ~(TIM_SR_UIF);
+//       GPIOG->ODR &= ~(GPIO_PIN_1);     // Turn off heater
+//      sec_passed += 1/SAMPLE_RATE;      // Increment time
+//      int duty = pid_output(kp, ki, kd);// Get PID response
+//      TIM2_set_duty_cycle(duty);        // Set duty cycle based on PID
+//   }
+//}
 
 /*------------------------------------------------------------------------------
  * Function : get_rand_num();

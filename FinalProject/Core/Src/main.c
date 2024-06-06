@@ -17,8 +17,10 @@ void SystemClock_Config(void);
 
 #define MARGIN_HIGH 0
 #define MARGIN_LOW 1
-
+uint32_t newtemp;
 uint32_t temp ;
+char buffer [sizeof(uint32_t)*8+1];
+
 
 //static int sec_passed = 0;
 
@@ -30,7 +32,7 @@ int main(void)
   SysTick_Init();                     //setup delay function
   Keypad_Config();
   SPI_init();
-  //setup_TIM2(50);
+  setup_TIM2(50);
   LPUART_init();
   LCD_init();
     RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIOGEN); //Heater
@@ -52,14 +54,12 @@ int main(void)
 //  GPIOG->ODR &= ~GPIO_PIN_1;
 //      GPIOF->ODR |= GPIO_PIN_0;
     uint32_t temp;
-    uint32_t newtemp;
     uint8_t state = 0;
-    uint8_t user_temp_select_place_index = 3;
   while (1)
   {
 
-
       newtemp = SPI_read();
+
 
       switch(state){
       case 0:
@@ -92,10 +92,46 @@ int main(void)
     	  }
     	  break;
       case 1:
+		uint8_t user_temp_select_place_index = 3;
+		uint8_t user_set_point;
+
+		while(user_temp_select_place_index != 0){
     	  if (Keypad_IsAnyKeyPressed() == 1){
-			  if (Keypad_WhichKeyIsPressed() == 10){
+    		  uint8_t key_pressed = Keypad_WhichKeyIsPressed();
+			  if (key_pressed >= 0 && key_pressed < 10){
+				  if (user_temp_select_place_index == 3){
+					  user_set_point += key_pressed * 100;
+				  }
+				  else if (user_temp_select_place_index == 2){
+					  user_set_point += key_pressed * 10;
+				  }
+				  else if (user_temp_select_place_index == 1){
+					  user_set_point += key_pressed;
+				  }
+
+				  user_temp_select_place_index--;
+
+			  }
+
+
+		  }
+		  LCD_set_cursor(0, 0);
+    	  LCD_write_text("User setpoint = ");
+
+		  LCD_set_cursor(0, 1);
+    	  itoa(user_set_point, buffer, 10);
+		  LCD_write_text(buffer);
+		  LCD_write_text("C");
+		}
+
+		  LCD_set_cursor(0, 0);
+		  LCD_write_text("                ");
+		  LCD_set_cursor(0, 1);
+		  LCD_write_text("                ");
+		  set_point = user_set_point;
+		  state++;
+		  break;
       case 2:
-			char buffer [sizeof(uint32_t)*8+1];
 
 
 			//set_input(temp);
@@ -103,6 +139,7 @@ int main(void)
 			LCD_set_cursor(0, 0);
 			LCD_write_text("Setpoint = ");
 			itoa(set_point, buffer, 10);
+
 			LCD_write_text(buffer);
 			LCD_write_text("C");
 
@@ -148,17 +185,17 @@ int main(void)
  * Version  : 0.1
  * Date    `: 240501
 ------------------------------------------------------------------------------*/
-//void TIM2_IRQHandler(void) {
-//   if (TIM2->SR & TIM_SR_CC1IF) {       // triggered by CCR1 event ...
-//       TIM2->SR &= ~(TIM_SR_CC1IF);
-//       GPIOG->ODR &= ~GPIO_PIN_1;        // Turn off heater
-//   }
-//   if (TIM2->SR & TIM_SR_UIF) {         // triggered by ARR event ...
-//       TIM2->SR &= ~(TIM_SR_UIF);
-//       GPIOG->ODR |= (GPIO_PIN_1);     // Turn on heater
-////      sec_passed += 1/SAMPLE_RATE;      // Increment time
-//   }
-//}
+void TIM2_IRQHandler(void) {
+   if (TIM2->SR & TIM_SR_CC1IF) {       // triggered by CCR1 event ...
+       TIM2->SR &= ~(TIM_SR_CC1IF);
+      // GPIOG->ODR &= ~GPIO_PIN_1;        // Turn off heater
+   }
+   if (TIM2->SR & TIM_SR_UIF) {         // triggered by ARR event ...
+       TIM2->SR &= ~(TIM_SR_UIF);
+      // GPIOG->ODR |= (GPIO_PIN_1);     // Turn on heater
+//      sec_passed += 1/SAMPLE_RATE;      // Increment time
+   }
+}
 
 
 
