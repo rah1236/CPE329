@@ -8,6 +8,8 @@
 #include "LCD.h"
 #include "keypad.h"
 #include "data.c"
+#include "utils.h"
+#include "delay.h"
 #include <math.h>
 
 void SystemClock_Config(void);
@@ -20,6 +22,7 @@ void SystemClock_Config(void);
 #define MARGIN_LOW 1
 uint32_t newtemp;
 uint32_t temp ;
+uint8_t state = 0;
 char buffer [sizeof(uint32_t)*8+1];
 
 
@@ -33,6 +36,7 @@ int main(void)
   SysTick_Init();                     //setup delay function
   Keypad_Config();
   SPI_init();
+  setup_TIM2(50);
   LPUART_init();
   LCD_init();
     RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIOGEN); //Heater
@@ -51,35 +55,60 @@ int main(void)
     GPIOF->OSPEEDR |=  (3 << GPIO_OSPEEDR_OSPEED0_Pos);
     GPIOF->ODR &= ~GPIO_PIN_0;
 
-//  GPIOG->ODR &= ~GPIO_PIN_1;
-//      GPIOF->ODR |= GPIO_PIN_0;
+    initialize_pin(GPIOF, 7, INPUT_MODE, 0, PULLUP, HIGH_SPEED);
     uint32_t temp;
-    uint8_t state = 0;
     uint8_t reflow_flag = 0;
+    uint32_t timer_ctr = 0;
+    uint8_t home_state = 1;
   while (1)
   {
+      timer_ctr = timer_ctr + 1;
       newtemp = SPI_read();
 
 
       switch(state){
       case 0:
           set_point = 15;
-          LCD_set_cursor(0, 0);
-          LCD_write_text("click * to enter ");
-          LCD_set_cursor(0, 1);
-          LCD_write_text("a setpoint  ");
+          // If start button pressed...
+          if ((GPIOF->IDR & GPIO_PIN_7) == 0){
+              LCD_set_cursor(0, 0);
+              LCD_write_text("                ");
+              LCD_set_cursor(0, 1);
+              LCD_write_text("                ");
+              state = 3;
+          }
+          /*LCD_set_cursor(0, 0);
+            LCD_write_text("click * to enter ");
+            LCD_set_cursor(0, 1);
+            LCD_write_text("a setpoint  ");
+            for (int i = 0; i < 50 0000; i++);
 
-          for(int i = 0; i < 500000; i++){};
+            LCD_set_cursor(0, 0);
+            LCD_write_text("or click 'START'");
+            LCD_set_cursor(0, 1);
+            LCD_write_text("  to reflow  ");
 
 
-          LCD_set_cursor(0, 0);
-          LCD_write_text("or click 'START'");
-          LCD_set_cursor(0, 1);
-          LCD_write_text("  to reflow  ");
-
-          for(int i = 0; i < 500000; i++){};
-
-
+            for (int i = 0; i < 500000; i++);*/
+           if (timer_ctr > 200){
+               timer_ctr = 0;
+               if(home_state == 0) {
+                   home_state = 1; }
+               if(home_state == 1) {
+                   home_state = 0; }
+           }
+          if(home_state == 1) {
+              LCD_set_cursor(0, 0);
+              LCD_write_text("click * to enter ");
+              LCD_set_cursor(0, 1);
+              LCD_write_text("a setpoint  ");
+          }
+          if(home_state == 0) {
+              LCD_set_cursor(0, 0);
+              LCD_write_text("or click 'START'");
+              LCD_set_cursor(0, 1);
+              LCD_write_text("  to reflow  ");
+          }
           if (Keypad_IsAnyKeyPressed() == 1){
               if (Keypad_WhichKeyIsPressed() == 10){
                   LCD_set_cursor(0, 0);
@@ -89,14 +118,14 @@ int main(void)
 
                   state++;
               }
-              else if (Keypad_WhichKeyIsPressed() == 15){
+              /*else if (Keypad_WhichKeyIsPressed() == 15){
                   LCD_set_cursor(0, 0);
                   LCD_write_text("                ");
                   LCD_set_cursor(0, 1);
                   LCD_write_text("                ");
 
                   state = 3;
-              }
+              }*/
 
           }
           break;
@@ -246,7 +275,6 @@ int main(void)
 
   }
 }
-
 /*------------------------------------------------------------------------------
  * Function : TIM2_IRQHandler();
  * IN       : None
@@ -260,10 +288,12 @@ int main(void)
 void TIM2_IRQHandler(void) {
    if (TIM2->SR & TIM_SR_CC1IF) {       // triggered by CCR1 event ...
        TIM2->SR &= ~(TIM_SR_CC1IF);
+       //timer_ctr = timer_ctr + 1;
       // GPIOG->ODR &= ~GPIO_PIN_1;        // Turn off heater
    }
    if (TIM2->SR & TIM_SR_UIF) {         // triggered by ARR event ...
        TIM2->SR &= ~(TIM_SR_UIF);
+       //timer_ctr = timer_ctr + 1;
       // GPIOG->ODR |= (GPIO_PIN_1);     // Turn on heater
 //      sec_passed += 1/SAMPLE_RATE;      // Increment time
    }
