@@ -1,4 +1,4 @@
 ../Core/Src/spi.c:4:6:SPI_init	4	static
-../Core/Src/spi.c:65:15:DAC_volt_conv	24	static
-../Core/Src/spi.c:72:6:SPI_write	16	static
-../Core/Src/spi.c:86:10:SPI_read	24	static
+../Core/Src/spi.c:67:15:DAC_volt_conv	24	static
+../Core/Src/spi.c:74:6:SPI_write	16	static
+../Core/Src/spi.c:88:10:SPI_read	24	static

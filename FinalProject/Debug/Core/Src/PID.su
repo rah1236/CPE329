@@ -1,0 +1,5 @@
+../Core/Src/PID.c:20:14:integrate_error	16	static
+../Core/Src/PID.c:25:14:diff_error	16	static
+../Core/Src/PID.c:29:14:pid_output	40	static
+../Core/Src/PID.c:41:14:calculate_error	24	static
+../Core/Src/PID.c:46:6:set_input	16	static

@@ -1,0 +1,5 @@
+../Core/Src/tim2_timer.c:36:6:setup_TIM2	1
+../Core/Src/tim2_timer.c:65:6:reset_TIM2_timer	1
+../Core/Src/tim2_timer.c:105:6:setup_MCO_CLK	1
+../Core/Src/tim2_timer.c:118:6:TIM2_set_duty_cycle	1
+../Core/Src/tim2_timer.c:123:5:get_sec_passed	1

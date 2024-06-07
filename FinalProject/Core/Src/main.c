@@ -23,6 +23,7 @@ void SystemClock_Config(void);
 uint32_t newtemp;
 uint32_t temp ;
 uint8_t state = 0;
+uint32_t timer_ctr = 0;
 char buffer [sizeof(uint32_t)*8+1];
 
 
@@ -58,14 +59,12 @@ int main(void)
     initialize_pin(GPIOF, 7, INPUT_MODE, 0, PULLUP, HIGH_SPEED);
     uint32_t temp;
     uint8_t reflow_flag = 0;
-    uint32_t timer_ctr = 0;
-    uint8_t home_state = 1;
+    int home_state = 1;
   while (1)
   {
-      timer_ctr = timer_ctr + 1;
       newtemp = SPI_read();
 
-
+      timer_ctr = timer_ctr + 1;
       switch(state){
       case 0:
           set_point = 15;
@@ -91,11 +90,11 @@ int main(void)
 
             for (int i = 0; i < 500000; i++);*/
            if (timer_ctr > 200){
+               if(home_state == 0)
+                   home_state = 1;
+               else
+                   home_state = 0;
                timer_ctr = 0;
-               if(home_state == 0) {
-                   home_state = 1; }
-               if(home_state == 1) {
-                   home_state = 0; }
            }
           if(home_state == 1) {
               LCD_set_cursor(0, 0);
@@ -288,12 +287,10 @@ int main(void)
 void TIM2_IRQHandler(void) {
    if (TIM2->SR & TIM_SR_CC1IF) {       // triggered by CCR1 event ...
        TIM2->SR &= ~(TIM_SR_CC1IF);
-       //timer_ctr = timer_ctr + 1;
       // GPIOG->ODR &= ~GPIO_PIN_1;        // Turn off heater
    }
    if (TIM2->SR & TIM_SR_UIF) {         // triggered by ARR event ...
        TIM2->SR &= ~(TIM_SR_UIF);
-       //timer_ctr = timer_ctr + 1;
       // GPIOG->ODR |= (GPIO_PIN_1);     // Turn on heater
 //      sec_passed += 1/SAMPLE_RATE;      // Increment time
    }
