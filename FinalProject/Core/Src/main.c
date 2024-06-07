@@ -8,6 +8,7 @@
 #include "LCD.h"
 #include "keypad.h"
 #include "data.c"
+#include <math.h>
 
 void SystemClock_Config(void);
 
@@ -32,7 +33,6 @@ int main(void)
   SysTick_Init();                     //setup delay function
   Keypad_Config();
   SPI_init();
-  setup_TIM2(50);
   LPUART_init();
   LCD_init();
     RCC->AHB2ENR   |=  (RCC_AHB2ENR_GPIOGEN); //Heater
@@ -55,122 +55,194 @@ int main(void)
 //      GPIOF->ODR |= GPIO_PIN_0;
     uint32_t temp;
     uint8_t state = 0;
+    uint8_t reflow_flag = 0;
   while (1)
   {
-
       newtemp = SPI_read();
 
 
       switch(state){
       case 0:
-    	  set_point = 15;
-		  LCD_set_cursor(0, 0);
-    	  LCD_write_text("click * to enter ");
-		  LCD_set_cursor(0, 1);
-    	  LCD_write_text("a setpoint  ");
+          set_point = 15;
+          LCD_set_cursor(0, 0);
+          LCD_write_text("click * to enter ");
+          LCD_set_cursor(0, 1);
+          LCD_write_text("a setpoint  ");
 
-		  for(int i = 0; i < 500000; i++){};
+          for(int i = 0; i < 500000; i++){};
 
 
-		  LCD_set_cursor(0, 0);
-    	  LCD_write_text("or click 'START'");
-		  LCD_set_cursor(0, 1);
-    	  LCD_write_text("  to reflow  ");
+          LCD_set_cursor(0, 0);
+          LCD_write_text("or click 'START'");
+          LCD_set_cursor(0, 1);
+          LCD_write_text("  to reflow  ");
 
-		  for(int i = 0; i < 500000; i++){};
+          for(int i = 0; i < 500000; i++){};
 
-    	  if (Keypad_IsAnyKeyPressed() == 1){
-    		  if (Keypad_WhichKeyIsPressed() == 10){
-    			  LCD_set_cursor(0, 0);
-    	    	  LCD_write_text("                ");
-    	    	  LCD_set_cursor(0, 1);
-    	    	  LCD_write_text("                ");
 
-    			  state++;
-    		  }
+          if (Keypad_IsAnyKeyPressed() == 1){
+              if (Keypad_WhichKeyIsPressed() == 10){
+                  LCD_set_cursor(0, 0);
+                  LCD_write_text("                ");
+                  LCD_set_cursor(0, 1);
+                  LCD_write_text("                ");
 
-    	  }
-    	  break;
+                  state++;
+              }
+              else if (Keypad_WhichKeyIsPressed() == 15){
+                  LCD_set_cursor(0, 0);
+                  LCD_write_text("                ");
+                  LCD_set_cursor(0, 1);
+                  LCD_write_text("                ");
+
+                  state = 3;
+              }
+
+          }
+          break;
       case 1:
-		uint8_t user_temp_select_place_index = 3;
-		uint8_t user_set_point;
+        uint8_t user_temp_select_place_index = 3;
+        uint8_t user_set_point;
 
-		while(user_temp_select_place_index != 0){
-    	  if (Keypad_IsAnyKeyPressed() == 1){
-    		  uint8_t key_pressed = Keypad_WhichKeyIsPressed();
-			  if (key_pressed >= 0 && key_pressed < 10){
-				  if (user_temp_select_place_index == 3){
-					  user_set_point += key_pressed * 100;
-				  }
-				  else if (user_temp_select_place_index == 2){
-					  user_set_point += key_pressed * 10;
-				  }
-				  else if (user_temp_select_place_index == 1){
-					  user_set_point += key_pressed;
-				  }
+        while(user_temp_select_place_index != 0){
+          if (Keypad_IsAnyKeyPressed() == 1){
+              uint8_t key_pressed = Keypad_WhichKeyIsPressed();
+              if (key_pressed >= 0 && key_pressed < 10){
+                  if (user_temp_select_place_index == 3){
+                      user_set_point += key_pressed * 100;
+                  }
+                  else if (user_temp_select_place_index == 2){
+                      user_set_point += key_pressed * 10;
+                  }
+                  else if (user_temp_select_place_index == 1){
+                      user_set_point += key_pressed;
+                  }
 
-				  user_temp_select_place_index--;
+                  user_temp_select_place_index--;
 
-			  }
+              }
 
 
-		  }
-		  LCD_set_cursor(0, 0);
-    	  LCD_write_text("User setpoint = ");
+          }
+          LCD_set_cursor(0, 0);
+          LCD_write_text("User setpoint = ");
 
-		  LCD_set_cursor(0, 1);
-    	  itoa(user_set_point, buffer, 10);
-		  LCD_write_text(buffer);
-		  LCD_write_text("C");
-		}
+          LCD_set_cursor(0, 1);
+          itoa(user_set_point, buffer, 10);
+          LCD_write_text(buffer);
+          LCD_write_text("C");
+        }
 
-		  LCD_set_cursor(0, 0);
-		  LCD_write_text("                ");
-		  LCD_set_cursor(0, 1);
-		  LCD_write_text("                ");
-		  set_point = user_set_point;
-		  state++;
-		  break;
+          LCD_set_cursor(0, 0);
+          LCD_write_text("                ");
+          LCD_set_cursor(0, 1);
+          LCD_write_text("                ");
+          set_point = user_set_point;
+          state++;
+          break;
       case 2:
 
 
-			//set_input(temp);
-			for(int i = 0; i < 10000; i++){};
-			LCD_set_cursor(0, 0);
-			LCD_write_text("Setpoint = ");
-			itoa(set_point, buffer, 10);
+            //set_input(temp);
+            for(int i = 0; i < 10000; i++){};
+            LCD_set_cursor(0, 0);
+            LCD_write_text("Setpoint = ");
+            itoa(set_point, buffer, 10);
 
-			LCD_write_text(buffer);
-			LCD_write_text("C");
+            LCD_write_text(buffer);
+            LCD_write_text("C");
 
-			if (temp > 0){
-				itoa(temp, buffer, 10);
-			}
-			LCD_set_cursor(0, 1);
-			LCD_write_text("Temp = ");
-			LCD_write_text(buffer);
-			LCD_write_text("C");
+            if (temp > 0){
+                itoa(temp, buffer, 10);
+            }
+            LCD_set_cursor(0, 1);
+            LCD_write_text("Temp = ");
+            LCD_write_text(buffer);
+            LCD_write_text("C");
 
-			break;
+            break;
+      case 3:
+          if (!reflow_flag){
+              reset_TIM2_timer();
+              reflow_flag = 1;
+          }
+          setup_TIM2(50);
+          int sec = TIM2->CNT/100;
+          int num_secs_total = sizeof(reflow_vals)/sizeof(reflow_vals[0]);
+          if (sec >= num_secs_total){
+              TIM2->CR1 &= ~TIM_CR1_CEN;                       // start TIM2 CR1
+              state++;
+              reflow_flag = 0;
+          }
+          set_point = round((double)reflow_vals[sec]);
+          for(int i = 0; i < 10000; i++){};
+
+          LCD_set_cursor(0, 0);
+          LCD_write_text("                ");
+          LCD_set_cursor(0, 1);
+          LCD_write_text("                ");
+          LCD_set_cursor(0, 0);
+          LCD_write_text("Setpoint = ");
+          itoa(set_point, buffer, 10);
+
+          LCD_write_text(buffer);
+          LCD_write_text("C");
+
+          itoa(temp, buffer, 10);
+
+          LCD_set_cursor(0, 1);
+          LCD_write_text("Temp = ");
+          LCD_write_text(buffer);
+          LCD_write_text("C");
+          break;
+      case 4:
+          set_point = 15;
+          for(int i = 0; i < 10000; i++){};
+          if (temp < 30){
+              state = 0;
+          }
+
+          LCD_set_cursor(0, 0);
+          LCD_write_text("                ");
+          LCD_set_cursor(0, 1);
+          LCD_write_text("                ");
+          LCD_set_cursor(0, 0);
+          LCD_write_text("Setpoint = ");
+          itoa(set_point, buffer, 10);
+
+          LCD_write_text(buffer);
+          LCD_write_text("C");
+
+          itoa(temp, buffer, 10);
+
+          LCD_set_cursor(0, 1);
+          LCD_write_text("Temp = ");
+          LCD_write_text(buffer);
+          LCD_write_text("C");
+          break;
       }
 
 
       if (newtemp != 0){
-         	           temp = newtemp;
-         	       }
-         	       if (temp > (set_point + MARGIN_HIGH)){
-         	           GPIOG->ODR &= ~(GPIO_PIN_1);     // Turn off
-         	           GPIOF->ODR |= GPIO_PIN_0;
-         	       }
-         	       else if (temp < (set_point - MARGIN_LOW)){
-         	           GPIOG->ODR |= GPIO_PIN_1;         // Turn on
-         	           GPIOF->ODR &= ~(GPIO_PIN_0);
-         	       }
-//      LPUART_print(buffer);
-//      LPUART_print("\r");
-//      LPUART_print("\n");
-      //int duty = pid_output(KP, KI, KD);// Get PID response
-      //TIM2_set_duty_cycle(duty);        // Set duty cycle based on PID
+           temp = newtemp;
+       }
+       if (temp > (set_point + MARGIN_HIGH)){
+           GPIOG->ODR &= ~(GPIO_PIN_1);     // Turn off
+           GPIOF->ODR |= GPIO_PIN_0;
+       }
+       else if (temp < (set_point - MARGIN_LOW)){
+           GPIOG->ODR |= GPIO_PIN_1;         // Turn on
+           GPIOF->ODR &= ~(GPIO_PIN_0);
+       }
+
+      itoa(set_point, buffer, 10);
+      LPUART_print(buffer);
+      LPUART_print(",");
+      itoa(temp, buffer, 10);
+      LPUART_print(buffer);
+      LPUART_print("\r");
+      LPUART_print("\n");
+
 
   }
 }
@@ -196,7 +268,6 @@ void TIM2_IRQHandler(void) {
 //      sec_passed += 1/SAMPLE_RATE;      // Increment time
    }
 }
-
 
 
 void SystemClock_Config(void)
