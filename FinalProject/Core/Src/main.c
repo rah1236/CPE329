@@ -72,7 +72,7 @@ int main(void)
       switch(state){
       case 0:
           if (!start_flag){
-              for (int i = 0; i < 50000; i++);
+              for (int i = 0; i < 100000; i++);
               start_flag = 1;
               reflow_flag = 0;
               sp_flag = 0;
@@ -99,7 +99,7 @@ int main(void)
               start_flag = 0;
           }
 
-           if (timer_ctr > 200){
+           if (timer_ctr > 400){
                if(home_state == 0)
                    home_state = 1;
                else
@@ -108,76 +108,107 @@ int main(void)
            }
           if(home_state == 1) {
               LCD_set_cursor(0, 0);
-              LCD_write_text("click * to enter ");
+              LCD_write_text("   welcome to   ");
               LCD_set_cursor(0, 1);
-              LCD_write_text("a setpoint  ");
+              LCD_write_text("- HOTPLATE PRO -");
           }
           if(home_state == 0) {
               LCD_set_cursor(0, 0);
-              LCD_write_text("or click 'START'");
+              LCD_write_text("START:  Reflow  ");
               LCD_set_cursor(0, 1);
-              LCD_write_text("  to reflow  ");
+              LCD_write_text("SCROLL: Setpoint");
           }
           break;
       case 1:
-        uint8_t user_temp_select_place_index = 3;
-        uint8_t user_set_point;
-        if (!user_sp_flag){
-            for (int i = 0; i < 100000; i++);
-            user_sp_flag = 1;
-        }
-        if ((GPIOF->IDR & GPIO_PIN_8) == 0){
-            state = 0;
-        }
-
-        while(user_temp_select_place_index != 0){
-          if (Keypad_IsAnyKeyPressed() == 1){
-              uint8_t key_pressed = Keypad_WhichKeyIsPressed();
-              if (key_pressed >= 0 && key_pressed < 10){
-                  if (user_temp_select_place_index == 3){
-                      user_set_point += key_pressed * 100;
-                  }
-                  else if (user_temp_select_place_index == 2){
-                      user_set_point += key_pressed * 10;
-                  }
-                  else if (user_temp_select_place_index == 1){
-                      user_set_point += key_pressed;
-                  }
-
-                  user_temp_select_place_index--;
-
-              }
-              for (int i = 0; i < 50000; i++);
-
+          uint8_t user_temp_select_place_index = 3;
+          uint16_t user_set_point = 0;
+          if (!user_sp_flag){
+              for (int i = 0; i < 100000; i++);
+              user_sp_flag = 1;
           }
-          LCD_set_cursor(0, 0);
-          LCD_write_text("User setpoint = ");
+          if ((GPIOF->IDR & GPIO_PIN_8) == 0){
+              LCD_set_cursor(0, 0);
+              LCD_write_text("                ");
+              LCD_set_cursor(0, 1);
+              LCD_write_text("                ");
+              LCD_set_cursor(0, 0);
+              state = 0;
+          }
 
-          LCD_set_cursor(0, 1);
-          itoa(user_set_point, buffer, 10);
-          LCD_write_text(buffer);
-          LCD_write_text("C");
-        }
+          while(user_temp_select_place_index != 0){
+            if (Keypad_IsAnyKeyPressed() == 1){
+                uint8_t key_pressed = Keypad_WhichKeyIsPressed();
+                if (key_pressed >= 0 && key_pressed < 10){
+                    if (user_temp_select_place_index == 3){
+                        user_set_point += key_pressed * 100;
+                    }
+                    else if (user_temp_select_place_index == 2){
+                        user_set_point += key_pressed * 10;
+                    }
+                    else if (user_temp_select_place_index == 1){
+                        user_set_point += key_pressed;
+                    }
 
-          LCD_set_cursor(0, 0);
-          LCD_write_text("                ");
-          LCD_set_cursor(0, 1);
-          LCD_write_text("                ");
-          set_point = user_set_point;
-          state++;
-          break;
+                    user_temp_select_place_index--;
+
+                }
+                for (int i = 0; i < 50000; i++);
+
+            }
+            LCD_set_cursor(0, 0);
+            LCD_write_text("User Target Temp ");
+            LCD_set_cursor(0, 1);
+            if(user_temp_select_place_index == 3) {
+                LCD_write_text("___ C           ");
+            }
+            else if(user_temp_select_place_index == 2) {
+                itoa(user_set_point/100, buffer, 10);
+                LCD_write_text(buffer);
+                LCD_set_cursor(1, 1);
+                LCD_write_text("__ C");
+            }
+            else if(user_temp_select_place_index == 1) {
+              itoa(user_set_point/10, buffer, 10);
+              LCD_write_text(buffer);
+              LCD_set_cursor(2, 1);
+              LCD_write_text("_ C");
+            }
+            else if(user_temp_select_place_index == 0) {
+                itoa(user_set_point, buffer, 10);
+                LCD_write_text(buffer);
+                LCD_set_cursor(3, 1);
+                LCD_write_text(" C");
+            }
+           }
+           for (int i = 0; i < 300000; i++);
+           if (user_set_point > 300){
+               user_set_point = 300;
+           }
+
+            LCD_set_cursor(0, 0);
+            LCD_write_text("                ");
+            LCD_set_cursor(0, 1);
+            LCD_write_text("                ");
+            set_point = user_set_point;
+            state++;
+            break;
       case 2:
           if (!sp_flag){
               for (int i = 0; i < 50000; i++);
               sp_flag = 1;
           }
           if ((GPIOF->IDR & GPIO_PIN_8) == 0){
+              LCD_set_cursor(0, 0);
+              LCD_write_text("                ");
+              LCD_set_cursor(0, 1);
+              LCD_write_text("                ");
+              LCD_set_cursor(0, 0);
               state = 0;
           }
             //set_input(temp);
             for(int i = 0; i < 10000; i++){};
             LCD_set_cursor(0, 0);
-            LCD_write_text("Setpoint = ");
+            LCD_write_text("Targ: ");
             itoa(set_point, buffer, 10);
 
             LCD_write_text(buffer);
@@ -187,19 +218,24 @@ int main(void)
                 itoa(temp, buffer, 10);
             }
             LCD_set_cursor(0, 1);
-            LCD_write_text("Temp = ");
+            LCD_write_text("Temp: ");
             LCD_write_text(buffer);
             LCD_write_text("C");
 
             break;
       case 3:
           if (!reflow_flag){
-              for (int i = 0; i < 50000; i++);  // Button delay
+              for (int i = 0; i < 200000; i++);  // Button delay
               reset_TIM2_timer();
               reflow_flag = 1;
           }
           // If start button pressed...
             if ((GPIOF->IDR & GPIO_PIN_7) == 0){
+                LCD_set_cursor(0, 0);
+                LCD_write_text("                ");
+                LCD_set_cursor(0, 1);
+                LCD_write_text("                ");
+                LCD_set_cursor(0, 0);
                 state = 0;
             }
           setup_TIM2(50);
@@ -210,6 +246,7 @@ int main(void)
               state++;
               reflow_flag = 0;
           }
+          int percentage = (sec*100)/num_secs_total;
           set_point = round((double)reflow_vals[sec]);
           for(int i = 0; i < 10000; i++){};
 
@@ -218,18 +255,24 @@ int main(void)
           LCD_set_cursor(0, 1);
           LCD_write_text("                ");
           LCD_set_cursor(0, 0);
-          LCD_write_text("Setpoint = ");
+          LCD_write_text("Targ: ");
           itoa(set_point, buffer, 10);
-
           LCD_write_text(buffer);
           LCD_write_text("C");
+
+          LCD_set_cursor(11, 0);
+          LCD_write_text("Prog: ");
 
           itoa(temp, buffer, 10);
-
           LCD_set_cursor(0, 1);
-          LCD_write_text("Temp = ");
+          LCD_write_text("Temp: ");
           LCD_write_text(buffer);
-          LCD_write_text("C");
+          LCD_write_text("C   ");
+
+          itoa(percentage, buffer, 10);
+          LCD_write_text(buffer);
+          LCD_write_text("%");
+
           break;
       case 4:
           set_point = 15;
