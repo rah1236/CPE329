@@ -57,8 +57,12 @@ int main(void)
     GPIOF->ODR &= ~GPIO_PIN_0;
 
     initialize_pin(GPIOF, 7, INPUT_MODE, 0, PULLUP, HIGH_SPEED);
+    initialize_pin(GPIOF, 8, INPUT_MODE, 0, PULLUP, HIGH_SPEED);
     uint32_t temp;
     uint8_t reflow_flag = 0;
+    uint8_t user_sp_flag = 0;
+    uint8_t sp_flag = 0;
+    uint8_t start_flag = 0;
     int home_state = 1;
   while (1)
   {
@@ -67,6 +71,14 @@ int main(void)
       timer_ctr = timer_ctr + 1;
       switch(state){
       case 0:
+          if (!start_flag){
+              for (int i = 0; i < 50000; i++);
+              start_flag = 1;
+              reflow_flag = 0;
+              sp_flag = 0;
+              user_sp_flag = 0;
+          }
+
           set_point = 15;
           // If start button pressed...
           if ((GPIOF->IDR & GPIO_PIN_7) == 0){
@@ -75,20 +87,18 @@ int main(void)
               LCD_set_cursor(0, 1);
               LCD_write_text("                ");
               state = 3;
+              start_flag = 0;
           }
-          /*LCD_set_cursor(0, 0);
-            LCD_write_text("click * to enter ");
-            LCD_set_cursor(0, 1);
-            LCD_write_text("a setpoint  ");
-            for (int i = 0; i < 50 0000; i++);
+          // If scroll button pressed
+          if ((GPIOF->IDR & GPIO_PIN_8) == 0){
+              LCD_set_cursor(0, 0);
+              LCD_write_text("                ");
+              LCD_set_cursor(0, 1);
+              LCD_write_text("                ");
+              state++;
+              start_flag = 0;
+          }
 
-            LCD_set_cursor(0, 0);
-            LCD_write_text("or click 'START'");
-            LCD_set_cursor(0, 1);
-            LCD_write_text("  to reflow  ");
-
-
-            for (int i = 0; i < 500000; i++);*/
            if (timer_ctr > 200){
                if(home_state == 0)
                    home_state = 1;
@@ -108,29 +118,17 @@ int main(void)
               LCD_set_cursor(0, 1);
               LCD_write_text("  to reflow  ");
           }
-          if (Keypad_IsAnyKeyPressed() == 1){
-              if (Keypad_WhichKeyIsPressed() == 10){
-                  LCD_set_cursor(0, 0);
-                  LCD_write_text("                ");
-                  LCD_set_cursor(0, 1);
-                  LCD_write_text("                ");
-
-                  state++;
-              }
-              /*else if (Keypad_WhichKeyIsPressed() == 15){
-                  LCD_set_cursor(0, 0);
-                  LCD_write_text("                ");
-                  LCD_set_cursor(0, 1);
-                  LCD_write_text("                ");
-
-                  state = 3;
-              }*/
-
-          }
           break;
       case 1:
         uint8_t user_temp_select_place_index = 3;
         uint8_t user_set_point;
+        if (!user_sp_flag){
+            for (int i = 0; i < 100000; i++);
+            user_sp_flag = 1;
+        }
+        if ((GPIOF->IDR & GPIO_PIN_8) == 0){
+            state = 0;
+        }
 
         while(user_temp_select_place_index != 0){
           if (Keypad_IsAnyKeyPressed() == 1){
@@ -149,7 +147,7 @@ int main(void)
                   user_temp_select_place_index--;
 
               }
-
+              for (int i = 0; i < 50000; i++);
 
           }
           LCD_set_cursor(0, 0);
@@ -169,8 +167,13 @@ int main(void)
           state++;
           break;
       case 2:
-
-
+          if (!sp_flag){
+              for (int i = 0; i < 50000; i++);
+              sp_flag = 1;
+          }
+          if ((GPIOF->IDR & GPIO_PIN_8) == 0){
+              state = 0;
+          }
             //set_input(temp);
             for(int i = 0; i < 10000; i++){};
             LCD_set_cursor(0, 0);
@@ -191,9 +194,14 @@ int main(void)
             break;
       case 3:
           if (!reflow_flag){
+              for (int i = 0; i < 50000; i++);  // Button delay
               reset_TIM2_timer();
               reflow_flag = 1;
           }
+          // If start button pressed...
+            if ((GPIOF->IDR & GPIO_PIN_7) == 0){
+                state = 0;
+            }
           setup_TIM2(50);
           int sec = TIM2->CNT/100;
           int num_secs_total = sizeof(reflow_vals)/sizeof(reflow_vals[0]);
